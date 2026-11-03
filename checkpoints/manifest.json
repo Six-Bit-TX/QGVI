@@ -1,0 +1,1178 @@
+{
+  "schema_version": 1,
+  "title": "QGVI original nine-scene checkpoints and localization maps",
+  "huggingface": {
+    "repo_id": "TimSYQQX/QGVI-checkpoints",
+    "repo_type": "model",
+    "revision": "413dca63f3e91c9d56fddc428a39dab11a21cfdb",
+    "private": true,
+    "available_scenes": [
+      "sf",
+      "nyc"
+    ]
+  },
+  "status": "partial_private_remote_verified",
+  "checkpoint_bytes_modified": false,
+  "coordinate_system": "native model units; OpenCV camera-to-world",
+  "scenes": {
+    "sf": {
+      "scene_file": "scenes/sf/scene.json",
+      "dataset": "UC-GS",
+      "dataset_url": "https://github.com/SainingZhang/UC-GS",
+      "dataset_license": "No explicit dataset redistribution license found in source card; upstream terms apply",
+      "meters_per_model_unit": 1.0,
+      "scale_status": {
+        "camera_convention": "opencv_c2w_x_right_y_down_z_forward",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "coordinate_system": "checkpoint_model_world",
+        "meters_per_model_unit": 1.0,
+        "note": "Loader normalization is known; a physical metre calibration is not established by the checkpoint config.",
+        "physical_scale_status": "verified_source_metric_scale",
+        "scale": 1.0,
+        "source_to_model": "identity",
+        "status": "verified_source_metric_scale",
+        "calibration_audit": "experiments/cityloc_qgvi_v2/evaluation/outputs/ucgs_metric_scale_v1/audit.json",
+        "calibration_audit_sha256": "1ebebf0729a1dc41752265779d66f73b28deb2abafb5177ddc47657e7c761c29"
+      }
+    },
+    "nyc": {
+      "scene_file": "scenes/nyc/scene.json",
+      "dataset": "UC-GS",
+      "dataset_url": "https://github.com/SainingZhang/UC-GS",
+      "dataset_license": "No explicit dataset redistribution license found in source card; upstream terms apply",
+      "meters_per_model_unit": 1.0,
+      "scale_status": {
+        "camera_convention": "opencv_c2w_x_right_y_down_z_forward",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "coordinate_system": "checkpoint_model_world",
+        "meters_per_model_unit": 1.0,
+        "note": "Loader normalization is known; a physical metre calibration is not established by the checkpoint config.",
+        "physical_scale_status": "verified_source_metric_scale",
+        "scale": 1.0,
+        "source_to_model": "identity",
+        "status": "verified_source_metric_scale",
+        "calibration_audit": "experiments/cityloc_qgvi_v2/evaluation/outputs/ucgs_metric_scale_v1/audit.json",
+        "calibration_audit_sha256": "1ebebf0729a1dc41752265779d66f73b28deb2abafb5177ddc47657e7c761c29"
+      }
+    },
+    "colosseum": {
+      "scene_file": "scenes/colosseum/scene.json",
+      "dataset": "HorizonGS",
+      "dataset_url": "https://huggingface.co/datasets/BoDai/HorizonGS",
+      "dataset_license": "No explicit dataset redistribution license found in source card; upstream terms apply",
+      "meters_per_model_unit": 12.287265652074796,
+      "scale_status": {
+        "camera_convention": "opencv_c2w_x_right_y_down_z_forward",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "coordinate_system": "checkpoint_model_world",
+        "meters_per_model_unit": null,
+        "note": "Loader normalization is known; a physical metre calibration is not established by the checkpoint config.",
+        "physical_scale_status": "unverified",
+        "scale": 0.25,
+        "source_to_model": "(source_position - center) / scale"
+      }
+    },
+    "elvenruin": {
+      "scene_file": "scenes/elvenruin/scene.json",
+      "dataset": "HorizonGS",
+      "dataset_url": "https://huggingface.co/datasets/BoDai/HorizonGS",
+      "dataset_license": "No explicit dataset redistribution license found in source card; upstream terms apply",
+      "meters_per_model_unit": 14.134932472426199,
+      "scale_status": {
+        "camera_convention": "opencv_c2w_x_right_y_down_z_forward",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "coordinate_system": "checkpoint_model_world",
+        "meters_per_model_unit": null,
+        "note": "Loader normalization is known; a physical metre calibration is not established by the checkpoint config.",
+        "physical_scale_status": "unverified",
+        "scale": 0.25,
+        "source_to_model": "(source_position - center) / scale"
+      }
+    },
+    "citysample": {
+      "scene_file": "scenes/citysample/scene.json",
+      "dataset": "HorizonGS",
+      "dataset_url": "https://huggingface.co/datasets/BoDai/HorizonGS",
+      "dataset_license": "No explicit dataset redistribution license found in source card; upstream terms apply",
+      "meters_per_model_unit": 24.777027641784393,
+      "scale_status": {
+        "camera_convention": "opencv_c2w_x_right_y_down_z_forward",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "coordinate_system": "checkpoint_model_world",
+        "meters_per_model_unit": null,
+        "note": "Loader normalization is known; a physical metre calibration is not established by the checkpoint config.",
+        "physical_scale_status": "unverified",
+        "scale": 0.25,
+        "source_to_model": "(source_position - center) / scale"
+      }
+    },
+    "block_small": {
+      "scene_file": "scenes/block_small/scene.json",
+      "dataset": "MatrixCity",
+      "dataset_url": "https://huggingface.co/datasets/BoDai/MatrixCity",
+      "dataset_license": "CC-BY-NC-4.0",
+      "meters_per_model_unit": 25.0,
+      "scale_status": null
+    },
+    "road": {
+      "scene_file": "scenes/road/scene.json",
+      "dataset": "HorizonGS",
+      "dataset_url": "https://huggingface.co/datasets/BoDai/HorizonGS",
+      "dataset_license": "No explicit dataset redistribution license found in source card; upstream terms apply",
+      "meters_per_model_unit": 1.3387074112675108,
+      "scale_status": {
+        "camera_convention": "opencv_c2w_x_right_y_down_z_forward",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "coordinate_system": "checkpoint_model_world",
+        "meters_per_model_unit": null,
+        "note": "Loader normalization is known; a physical metre calibration is not established by the checkpoint config.",
+        "physical_scale_status": "unverified",
+        "scale": 1.0,
+        "source_to_model": "identity"
+      }
+    },
+    "park": {
+      "scene_file": "scenes/park/scene.json",
+      "dataset": "HorizonGS",
+      "dataset_url": "https://huggingface.co/datasets/BoDai/HorizonGS",
+      "dataset_license": "No explicit dataset redistribution license found in source card; upstream terms apply",
+      "meters_per_model_unit": 1.0398958526078188,
+      "scale_status": {
+        "camera_convention": "opencv_c2w_x_right_y_down_z_forward",
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "coordinate_system": "checkpoint_model_world",
+        "meters_per_model_unit": null,
+        "note": "Loader normalization is known; a physical metre calibration is not established by the checkpoint config.",
+        "physical_scale_status": "unverified",
+        "scale": 1.0,
+        "source_to_model": "identity"
+      }
+    },
+    "block_a": {
+      "scene_file": "scenes/block_a/scene.json",
+      "dataset": "MatrixCity",
+      "dataset_url": "https://huggingface.co/datasets/BoDai/MatrixCity",
+      "dataset_license": "CC-BY-NC-4.0",
+      "meters_per_model_unit": 25.0,
+      "scale_status": null
+    }
+  },
+  "files": [
+    {
+      "path": "scenes/sf/gaussian/config.yaml",
+      "scene": "sf",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2732,
+      "sha256": "c284e82a8ddb92b06420bc8ea6bb5cdefd40a1ae097d9ea33639ed70daf5fb68"
+    },
+    {
+      "path": "scenes/sf/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "sf",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 444344663,
+      "sha256": "ca2b30edc2511f2eb506426337c1e451f99a13fc22b5bf1a9f4fd7a7dd2989a8"
+    },
+    {
+      "path": "scenes/sf/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "sf",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "a76823f612779e695c19c9e8472172c42944c20af6f9b896d3914256941e41bc"
+    },
+    {
+      "path": "scenes/sf/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "sf",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "92ecdd5c746ee40e4920a1cb3e5707768c27b418ae04fcc2b028b471b7dc0a96"
+    },
+    {
+      "path": "scenes/sf/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "sf",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "de99894a902f42ee12fdf147993ba88c725bb1afcf5160811b177a457871ef6c"
+    },
+    {
+      "path": "scenes/sf/localization/reference_superpoint.h5",
+      "scene": "sf",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 653232854,
+      "sha256": "e9389c38d58281519275a188d88a5bbe270804d181b703c4eec5adf8c62addf0"
+    },
+    {
+      "path": "scenes/sf/localization/reference_netvlad.h5",
+      "scene": "sf",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 6842784,
+      "sha256": "9735e02f549f3cc0cc9c92f358c922d1fcc8984760ca658d7c2f29c747e8eb62"
+    },
+    {
+      "path": "scenes/sf/localization/sfm/cameras.bin",
+      "scene": "sf",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 37304,
+      "sha256": "343b905aeefef6401f99f6dc9cf0b4a11ddd09bf112a5765b151042e4a9f785f"
+    },
+    {
+      "path": "scenes/sf/localization/sfm/frames.bin",
+      "scene": "sf",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 55952,
+      "sha256": "92b81d3708fd280f1e65bcf05bbbc6d07caedecbddb81615ba49da0b57f9b8e3"
+    },
+    {
+      "path": "scenes/sf/localization/sfm/images.bin",
+      "scene": "sf",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 30260330,
+      "sha256": "20c0fe9886b0e9ac7e6d662dbd1e30498af7b7754175c04b6d8fa095ef58611e"
+    },
+    {
+      "path": "scenes/sf/localization/sfm/points3D.bin",
+      "scene": "sf",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 15968683,
+      "sha256": "d8bd47c6cfec443bf873f1eedd1ad0f38a5825cd469f50eafcc1fd6934b5ff7d"
+    },
+    {
+      "path": "scenes/sf/localization/sfm/rigs.bin",
+      "scene": "sf",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 10664,
+      "sha256": "97b3e238ce38ce1d30bdc5f62568d03aa0c78278edc796961e5310c9cd5783d2"
+    },
+    {
+      "path": "scenes/sf/scene.json",
+      "scene": "sf",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 19862,
+      "sha256": "f8552be1b92cc721b74201e695c1b14f6ad923986e4fc1b9fd8ef51a72ed85bc"
+    },
+    {
+      "path": "scenes/sf/reference_cameras.json",
+      "scene": "sf",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 649150,
+      "sha256": "9e579501d459710502638c130b9fa1e820a227813b8781bffcf92b37ccef2e1e"
+    },
+    {
+      "path": "scenes/nyc/gaussian/config.yaml",
+      "scene": "nyc",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2309,
+      "sha256": "790cd94f35e595a0afb2d0bfbae3ea3e0032ad6cee9d8e485525e838e62ca55f"
+    },
+    {
+      "path": "scenes/nyc/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "nyc",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 552256775,
+      "sha256": "b14de91b249ee2ae7a05705291055e772191f37f2c87ddb8a57f8520e25d4b90"
+    },
+    {
+      "path": "scenes/nyc/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "nyc",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "2c3017f57d5b3f6ab32df0a88df1c7f149b5a565d1726014c7acb9ced2818ce4"
+    },
+    {
+      "path": "scenes/nyc/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "nyc",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "46f7d2c1626b4bfd83e2d10c885190918cd846d104cfd53867386fc28534621d"
+    },
+    {
+      "path": "scenes/nyc/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "nyc",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "4b8a94ec235db83babff684cb46bb2688d5018c877ed7312804e7ce26031ba68"
+    },
+    {
+      "path": "scenes/nyc/localization/reference_superpoint.h5",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 582074158,
+      "sha256": "7e9bbfc4b16c543bcf73664c57a2f1842fe742013be23488cd35ccdc72102a95"
+    },
+    {
+      "path": "scenes/nyc/localization/reference_netvlad.h5",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 6842784,
+      "sha256": "254d44c9b803abd1f846461f594887c61d7551af06f3e32a681fed95c3efe43a"
+    },
+    {
+      "path": "scenes/nyc/localization/sfm/cameras.bin",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 37304,
+      "sha256": "343b905aeefef6401f99f6dc9cf0b4a11ddd09bf112a5765b151042e4a9f785f"
+    },
+    {
+      "path": "scenes/nyc/localization/sfm/frames.bin",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 55952,
+      "sha256": "1f203e0d6aee0f1d0ec360b8df86d72b2890ba4c0afa1c9a06cffaef6a4381f3"
+    },
+    {
+      "path": "scenes/nyc/localization/sfm/images.bin",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 26963402,
+      "sha256": "55d8d60ebe8f3c20e42e5ab0e51974b9a6bcc006b81eefda1dbe38893a969d80"
+    },
+    {
+      "path": "scenes/nyc/localization/sfm/points3D.bin",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 13428296,
+      "sha256": "8b0e12ffd1fca212404410186e9d2e28e796827e979df86034c7c41f6e40e722"
+    },
+    {
+      "path": "scenes/nyc/localization/sfm/rigs.bin",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 10664,
+      "sha256": "97b3e238ce38ce1d30bdc5f62568d03aa0c78278edc796961e5310c9cd5783d2"
+    },
+    {
+      "path": "scenes/nyc/scene.json",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 19863,
+      "sha256": "54197fb748280042445feff4c8ea19bd74ffd4afa1fef0c3cfcbdffdd8aee80c"
+    },
+    {
+      "path": "scenes/nyc/reference_cameras.json",
+      "scene": "nyc",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 674134,
+      "sha256": "c573879206e84b3762af383d94bfbef586713b13787de5e4ba6a9e242f4add5a"
+    },
+    {
+      "path": "scenes/colosseum/gaussian/config.yaml",
+      "scene": "colosseum",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2847,
+      "sha256": "cacbdd3fb4151064dc9ff957b206178cca79b3d6beb0bcb3ae03d18455672f0f"
+    },
+    {
+      "path": "scenes/colosseum/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "colosseum",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 718525953,
+      "sha256": "fa002b19c5d34287a71cd2349e2f61ad2bcab3f4aeeeb570cf04f87d87ef48a7"
+    },
+    {
+      "path": "scenes/colosseum/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "colosseum",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "fb9fdb6db46c18a1f3a1294d2eb33e709f4a58145cd0dff0288e92b7856a22e2"
+    },
+    {
+      "path": "scenes/colosseum/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "colosseum",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "966553af650d98c85d84f8319aa85d045b9789b895dae56c03e477c8649c4e83"
+    },
+    {
+      "path": "scenes/colosseum/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "colosseum",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "ed7c4f9a96e3657c43c3348a864650840d68c93c0e78205cf80c3b9beab5b2df"
+    },
+    {
+      "path": "scenes/colosseum/localization/reference_superpoint.h5",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 455982692,
+      "sha256": "b122eda15c36fae7211bc8558676d19d3ab8c495f069b0b5200704ede723d4c0"
+    },
+    {
+      "path": "scenes/colosseum/localization/reference_netvlad.h5",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 4816208,
+      "sha256": "be921a4755d65abb481b3f6ff2304154f03512546dcf91b0d87151516a7c9294"
+    },
+    {
+      "path": "scenes/colosseum/localization/sfm/cameras.bin",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 26272,
+      "sha256": "4139f1e86119f14e9a8098f26b1099c804eb18b90f9c2148660d52afa2f0f4a8"
+    },
+    {
+      "path": "scenes/colosseum/localization/sfm/frames.bin",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 39404,
+      "sha256": "411835f281485104bbcb8fa26d854b2111a86a95ced9b133cd6cf678a3c3ef9e"
+    },
+    {
+      "path": "scenes/colosseum/localization/sfm/images.bin",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 21122917,
+      "sha256": "a97ca6346090959bb83ba901e21cdf0990373e3b5d563a004fb8e7710bb52dd6"
+    },
+    {
+      "path": "scenes/colosseum/localization/sfm/points3D.bin",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 11499341,
+      "sha256": "82ff297a9f1d5eefbaa965d2bba007b72540cdc03536f1704fce64ad05ebf869"
+    },
+    {
+      "path": "scenes/colosseum/localization/sfm/rigs.bin",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 7512,
+      "sha256": "c4b83913514d929c133710f1c7d356235ad4a26e2972a492d0900f541cf2ef37"
+    },
+    {
+      "path": "scenes/colosseum/scene.json",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 14420,
+      "sha256": "bd4d53d4658d6a292e23c59159bd633173709006e1d51583f332ae8016f2e4c3"
+    },
+    {
+      "path": "scenes/colosseum/reference_cameras.json",
+      "scene": "colosseum",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 478299,
+      "sha256": "e7747eec1791565d58341f0bf938e07ae23bdc7854ddd929eee3bc7135d79c71"
+    },
+    {
+      "path": "scenes/elvenruin/gaussian/config.yaml",
+      "scene": "elvenruin",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2847,
+      "sha256": "1da0c9d315aaa9da380d9bab1851ff854d31f183633e1cafea20605fcf329db5"
+    },
+    {
+      "path": "scenes/elvenruin/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "elvenruin",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 995277199,
+      "sha256": "22e5f4a572a12b01b5a835a2c0799d8a7c36f067f8daaa1968051d768e099ba6"
+    },
+    {
+      "path": "scenes/elvenruin/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "elvenruin",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "ac844d9bd6bb65c4fda78718f49754133e958961917e0d3d8fd31e5f70846520"
+    },
+    {
+      "path": "scenes/elvenruin/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "elvenruin",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "a072ce408c845dad7d7d1ba21602709b1961cd30eabed896f9e8463380a8afb0"
+    },
+    {
+      "path": "scenes/elvenruin/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "elvenruin",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "a755393b98b4612f8ef1265724521ae5685705be963ba641778b6c0d70fdc8cd"
+    },
+    {
+      "path": "scenes/elvenruin/localization/reference_superpoint.h5",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 873818312,
+      "sha256": "530b4d7998d9d13eef26c32dbc1f26ab4a2c713dfaeb820239c4ad90bc00ee6c"
+    },
+    {
+      "path": "scenes/elvenruin/localization/reference_netvlad.h5",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 8344256,
+      "sha256": "7329dc4f26e9eb9d09da93e539e811d684d8244c91ac8399b8fa9fca67844738"
+    },
+    {
+      "path": "scenes/elvenruin/localization/sfm/cameras.bin",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 45480,
+      "sha256": "9e74c54203a6eb15baac491c3027bf68c571b43b2afc190b832165a2321add85"
+    },
+    {
+      "path": "scenes/elvenruin/localization/sfm/frames.bin",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 68216,
+      "sha256": "1c9c9069dd1229ac49c72106444ba7cbaf4131cfe20c5236954d23741006edd6"
+    },
+    {
+      "path": "scenes/elvenruin/localization/sfm/images.bin",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 40479348,
+      "sha256": "3efdefa5f3450a58e3f80aba536b7cb23b4158c9878260e123faeafcdee15b5c"
+    },
+    {
+      "path": "scenes/elvenruin/localization/sfm/points3D.bin",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 18043579,
+      "sha256": "fd11180fe8965d554d456d182588e4d1154d20e9487df9b9dd0b24eb28a64087"
+    },
+    {
+      "path": "scenes/elvenruin/localization/sfm/rigs.bin",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 13000,
+      "sha256": "d09f059545903c53e45de945fd87d522ae8694ea819063b46013a7f7aa764e82"
+    },
+    {
+      "path": "scenes/elvenruin/scene.json",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 23339,
+      "sha256": "e94086bce0f79ca6d52e14c91bc78c18966af3b07da967f3ebdf765279a28eb1"
+    },
+    {
+      "path": "scenes/elvenruin/reference_cameras.json",
+      "scene": "elvenruin",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 814519,
+      "sha256": "168d4e9daaff4a0b971417f64158af25728236197f98697cdfc4682f583a121d"
+    },
+    {
+      "path": "scenes/citysample/gaussian/config.yaml",
+      "scene": "citysample",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2850,
+      "sha256": "b69d1616c47df250e4258dfe7eef359b3d8639c672fff164efafcd735b4448b1"
+    },
+    {
+      "path": "scenes/citysample/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "citysample",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 1380461690,
+      "sha256": "ef10a46f8c5630d8561f899e69446d22649e9d06cee4dc13d3187d29a8d793eb"
+    },
+    {
+      "path": "scenes/citysample/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "citysample",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "d2f64941135afabf3e9e7cd4d9f1fb823b91918e7572f3dd1b58b5ac5a0445c4"
+    },
+    {
+      "path": "scenes/citysample/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "citysample",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "9aa1f8fc9468c51893349266981acc28489cafc02f44a09cb832c693cecb1d88"
+    },
+    {
+      "path": "scenes/citysample/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "citysample",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "b4c4e8a0c9845149921c757271085ce1aaa9ea130b697bbdf2807f7523717e5a"
+    },
+    {
+      "path": "scenes/citysample/localization/reference_superpoint.h5",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 2071721892,
+      "sha256": "e75257321ee324277dbe9c36b1aefc2f3e8935b7d48dc83c3ba37ee69d2f2535"
+    },
+    {
+      "path": "scenes/citysample/localization/reference_netvlad.h5",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 17814608,
+      "sha256": "df125496418cb8d856191cbaeb5db71d74e8befc684aa6265277daf592582e92"
+    },
+    {
+      "path": "scenes/citysample/localization/sfm/cameras.bin",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 97056,
+      "sha256": "d1383c0b879e560d9959f0e509eecf249a40fe1f05a172db70474fc23c0cc884"
+    },
+    {
+      "path": "scenes/citysample/localization/sfm/frames.bin",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 145580,
+      "sha256": "498e1db541b57ed09ba5038f48cdc42718956d6144564f79f5116b7754f825bc"
+    },
+    {
+      "path": "scenes/citysample/localization/sfm/images.bin",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 95973333,
+      "sha256": "c499468b8f2f961d00b2abb09499619c3e36d8bdb188ff9a61f3219b5ce9bc2e"
+    },
+    {
+      "path": "scenes/citysample/localization/sfm/points3D.bin",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 50935208,
+      "sha256": "d8c8a793737d5dfe53605e1e7e5ee0df4f06ad4c7c98137b68986b42c4327ea3"
+    },
+    {
+      "path": "scenes/citysample/localization/sfm/rigs.bin",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 27736,
+      "sha256": "a0c2892c764c9d39c6feb020d44bc6606e3066a78783461655226103b521f9fc"
+    },
+    {
+      "path": "scenes/citysample/scene.json",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 47286,
+      "sha256": "a0e596bd7ef5313d19f9655a4e05750082f26c28e15be0859da301f6caea1f19"
+    },
+    {
+      "path": "scenes/citysample/reference_cameras.json",
+      "scene": "citysample",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 1745026,
+      "sha256": "4baeb477249f493bd48cac6c170f18c9b286181bb5e0750cb208c9f840f4ca90"
+    },
+    {
+      "path": "scenes/block_small/gaussian/config.yaml",
+      "scene": "block_small",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2832,
+      "sha256": "9def55297fd1e923fce9955a06a1cc6f9dd0851c66ddc46889eecc826c8b5d12"
+    },
+    {
+      "path": "scenes/block_small/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "block_small",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 1792816710,
+      "sha256": "799ed73bd4be280cf2d816bbecc40114094db8ce826c77b972b4b6bfb1937f7b"
+    },
+    {
+      "path": "scenes/block_small/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "block_small",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "f233a45031fc3fd90f56b610449fc5d58ac6fc075f8f84622d5db7aaa6a011ef"
+    },
+    {
+      "path": "scenes/block_small/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "block_small",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "50026414705db6a6115a84128c4e869d2e027e9e7bb82fb35a1242029daf27f3"
+    },
+    {
+      "path": "scenes/block_small/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "block_small",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "779ba3b45cbc133485679be521dd15c53208a08c85e21bbbb4fc87e7a96ea061"
+    },
+    {
+      "path": "scenes/block_small/localization/reference_superpoint.h5",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 733077078,
+      "sha256": "8a9081fef439acb1467127afdf8a0ae35d9f20f1959d22e3e91d57822e5eb354"
+    },
+    {
+      "path": "scenes/block_small/localization/reference_netvlad.h5",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 4652112,
+      "sha256": "e6eb00ae863475a45c27577be44deda02f2c1d7fd8a559a11e498686a879d813"
+    },
+    {
+      "path": "scenes/block_small/localization/sfm/cameras.bin",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 25376,
+      "sha256": "4fc8ef9a4da97204f1c0eb08131da6538f137c6d2441f362b90a5e6ea461c85d"
+    },
+    {
+      "path": "scenes/block_small/localization/sfm/frames.bin",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 38060,
+      "sha256": "c6edd733f9d3f4c11c0f340f77353516095bab65ce1652ac20d79df8963350cc"
+    },
+    {
+      "path": "scenes/block_small/localization/sfm/images.bin",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 33960920,
+      "sha256": "cf15169ba0129eb14a5fa3f8393c0e28b190f33aa6f55004fdda16543efc27a5"
+    },
+    {
+      "path": "scenes/block_small/localization/sfm/points3D.bin",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 20260938,
+      "sha256": "22c5b37b1e49aa8b8889ea1191c6cf65aafd0388da88a11804dc38a59a41c88c"
+    },
+    {
+      "path": "scenes/block_small/localization/sfm/rigs.bin",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 7256,
+      "sha256": "6cc288470c09c89a026773947517112eeb1bdf758700874e65dbcdc83ea33dd2"
+    },
+    {
+      "path": "scenes/block_small/scene.json",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 12932,
+      "sha256": "11ea1e625ef1b63f08dec7145d7e9686ef34bc7afcd1232a152590035d6d6ea1"
+    },
+    {
+      "path": "scenes/block_small/reference_cameras.json",
+      "scene": "block_small",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 462426,
+      "sha256": "e990ea9043970c29fd3d9105b06b53ce3330f7021e6d2d7be82204d7b66275da"
+    },
+    {
+      "path": "scenes/road/gaussian/config.yaml",
+      "scene": "road",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2778,
+      "sha256": "7ec4476aabfaea0fcb9a89006d092e62c6e148f374ef06d773bf5bda17cfd322"
+    },
+    {
+      "path": "scenes/road/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "road",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 1892492286,
+      "sha256": "deef665821b2d686f29cb04c97e004696445aba33133ff883c022ab06c10d5b3"
+    },
+    {
+      "path": "scenes/road/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "road",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "8a79e41ad5c014a055bb07d441568f8d3d2fb03756fb48c3fdafb0a6dad152cd"
+    },
+    {
+      "path": "scenes/road/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "road",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "d53e3b8f31d1d3bcc44c216a716269fe16d22224e4c97cc22b651382d93381ca"
+    },
+    {
+      "path": "scenes/road/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "road",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "f92ad632de9cf8198773b80ddd436503f7fd11fa630259e46a03a1a33e059556"
+    },
+    {
+      "path": "scenes/road/localization/reference_superpoint.h5",
+      "scene": "road",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 2970647362,
+      "sha256": "2dbd8c439c63b3b853c54aee31d6be7ad27c0639bd8f2cf6175e6420119f0451"
+    },
+    {
+      "path": "scenes/road/localization/reference_netvlad.h5",
+      "scene": "road",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 25088112,
+      "sha256": "491feb72100cdae0dd8057325bd8b1217a6a9fed77a24430c54dc221c7bee2ee"
+    },
+    {
+      "path": "scenes/road/localization/sfm/cameras.bin",
+      "scene": "road",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 136592,
+      "sha256": "154595f337182167ccfad4424923747dec68d3d3f94b6becd7f3bd30fd7e724f"
+    },
+    {
+      "path": "scenes/road/localization/sfm/frames.bin",
+      "scene": "road",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 204884,
+      "sha256": "62f4205dd14864fe705eacb172238dcc22ab8a8c42c319f30f318d1bb3e3c76e"
+    },
+    {
+      "path": "scenes/road/localization/sfm/images.bin",
+      "scene": "road",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 137587295,
+      "sha256": "381ba6ad437aebc8d904fea29726991279ddb0fa55b21305c400376bf1db127f"
+    },
+    {
+      "path": "scenes/road/localization/sfm/points3D.bin",
+      "scene": "road",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 70260377,
+      "sha256": "b9436f3ce3363dd33c0656c5c84f3a316dc0627dbe65c9c87aff6e180475c6f9"
+    },
+    {
+      "path": "scenes/road/localization/sfm/rigs.bin",
+      "scene": "road",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 39032,
+      "sha256": "f37552c77380ab6316a00098d7aa0982370f6c887f55cc87125a158c2015d0d7"
+    },
+    {
+      "path": "scenes/road/scene.json",
+      "scene": "road",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 65610,
+      "sha256": "f3b9ee76e734f64309767358fe147324dde3ca9782b4cdb3c7717821f5d6f8ad"
+    },
+    {
+      "path": "scenes/road/reference_cameras.json",
+      "scene": "road",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 2479703,
+      "sha256": "bf1efee925675b0303a5fa7b9a5adcc8a526b3d81e4ab48e3a97aa4b81de0c31"
+    },
+    {
+      "path": "scenes/park/gaussian/config.yaml",
+      "scene": "park",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2775,
+      "sha256": "51ed5856302443f258f01e06fcbaf0f16327048d673cf2aa142ce636cea952e5"
+    },
+    {
+      "path": "scenes/park/gaussian/point_cloud/iteration_40000/point_cloud.ply",
+      "scene": "park",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 2977234406,
+      "sha256": "e5c6739dabd0c3a883172b0ba9c576bc0c0b9374059fd12717a4e593ef7041c3"
+    },
+    {
+      "path": "scenes/park/gaussian/point_cloud/iteration_40000/color_mlp.pt",
+      "scene": "park",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 15867,
+      "sha256": "95a6b9a29ab8f023f73f12b856a2581132be29a2edf08c730cf91750eb645522"
+    },
+    {
+      "path": "scenes/park/gaussian/point_cloud/iteration_40000/cov_mlp.pt",
+      "scene": "park",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 20881,
+      "sha256": "bc4f13e31793ad0dd99e8d9aa4d5bce12d23640957b3cc4390f6548e1c0641b8"
+    },
+    {
+      "path": "scenes/park/gaussian/point_cloud/iteration_40000/opacity_mlp.pt",
+      "scene": "park",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 13161,
+      "sha256": "bc64a269201962e594bda14129a3554b8e1257681d5e9746e304340714ef8b66"
+    },
+    {
+      "path": "scenes/park/localization/reference_superpoint.h5",
+      "scene": "park",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 5776591934,
+      "sha256": "bbade5333d7ddaf71f2cfbb06478cf6bcd442ec4ccd6d9e280e4e07e2a2b07e6"
+    },
+    {
+      "path": "scenes/park/localization/reference_netvlad.h5",
+      "scene": "park",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 63714080,
+      "sha256": "77637aed3a687e4c29e48a140dc6b4f9b074fd3d9aa5efb7e7246eb403631717"
+    },
+    {
+      "path": "scenes/park/localization/sfm/cameras.bin",
+      "scene": "park",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 346872,
+      "sha256": "19b7d84550e5dc585bc8072b8c6d652a9d3fd11c6353298bbbbffe0165e23365"
+    },
+    {
+      "path": "scenes/park/localization/sfm/frames.bin",
+      "scene": "park",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 520304,
+      "sha256": "a9f2f5d548aa311127111576ab71ec02585800e4f4082ea0c144b601471951f8"
+    },
+    {
+      "path": "scenes/park/localization/sfm/images.bin",
+      "scene": "park",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 267591138,
+      "sha256": "a996adc3a8c2bc2c481cf14f9c79d9e122e5fcd33a64b96831d19b0f7427dc51"
+    },
+    {
+      "path": "scenes/park/localization/sfm/points3D.bin",
+      "scene": "park",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 121296436,
+      "sha256": "c49332800c18a950f07065aa77f0d727f4ac4b8c3dd64cd1b8dc4b0170f2ebe5"
+    },
+    {
+      "path": "scenes/park/localization/sfm/rigs.bin",
+      "scene": "park",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 99112,
+      "sha256": "c8a5e5ad153f11e92bba2354101ebcc0ba9c1a93d0a7079076783d7373b2cd42"
+    },
+    {
+      "path": "scenes/park/scene.json",
+      "scene": "park",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 163239,
+      "sha256": "1af3e8b938e4d14871f811eb74dcb9092fdfdc1ad9a876e5c50ca589025a1c89"
+    },
+    {
+      "path": "scenes/park/reference_cameras.json",
+      "scene": "park",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 6309784,
+      "sha256": "6566771fea1fc1299268bb893a7221372e2ff5901a9c3dae2d88e7eabb3ebca0"
+    },
+    {
+      "path": "scenes/block_a/gaussian/config.yaml",
+      "scene": "block_a",
+      "group": "gaussian",
+      "role": "original_checkpoint_config",
+      "size_bytes": 2379,
+      "sha256": "a7d150430ebeec421fd88aa29146c5405b08f486c3e0ca9f3d9b7daefdc8a1a6"
+    },
+    {
+      "path": "scenes/block_a/gaussian/point_cloud/iteration_40000/point_cloud_explicit.ply",
+      "scene": "block_a",
+      "group": "gaussian",
+      "role": "original_gaussian_checkpoint",
+      "size_bytes": 22362263020,
+      "sha256": "80be358abde17e16bb5c43a4018320995176e7dbf0a90cb75d2828996ec88bb1"
+    },
+    {
+      "path": "scenes/block_a/localization/reference_superpoint.h5",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "reference_local_features",
+      "size_bytes": 7118116130,
+      "sha256": "3920fe9e66e946eb9d08794c381e9aaf2731418e373f989fc272942b17a986d5"
+    },
+    {
+      "path": "scenes/block_a/localization/reference_netvlad.h5",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "reference_global_descriptors",
+      "size_bytes": 52850976,
+      "sha256": "d5d757b2b19fe39607028e81817d2edb81a11a65d550239ff8fee5c3048f320b"
+    },
+    {
+      "path": "scenes/block_a/localization/sfm/cameras.bin",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 287736,
+      "sha256": "5fb186a48849f60f0fa3a409da02728d26e865a2200b018d9659dc218efbb0f5"
+    },
+    {
+      "path": "scenes/block_a/localization/sfm/frames.bin",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 431600,
+      "sha256": "8fd4dd3999565fbc9fdc9dcda365fe859885ee6ccd0dd352fc5b2bcf973c040a"
+    },
+    {
+      "path": "scenes/block_a/localization/sfm/images.bin",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 329754378,
+      "sha256": "247b3d3da53572d9d77dc965005383d78e20fc02a9f62ed9fdebf3b391b55e81"
+    },
+    {
+      "path": "scenes/block_a/localization/sfm/points3D.bin",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 196125269,
+      "sha256": "535ccaf294b66d7bb6eb253787ece9ca50785a507783419c337028a813c5fd07"
+    },
+    {
+      "path": "scenes/block_a/localization/sfm/rigs.bin",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "colmap_sparse_map",
+      "size_bytes": 82216,
+      "sha256": "ded7eb0694c7913f1a199df3131965b68e01b1365bf3dd08100206ac33874fff"
+    },
+    {
+      "path": "scenes/block_a/scene.json",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "portable_scene_configuration",
+      "size_bytes": 135191,
+      "sha256": "d79c2596f8f01c0e4719969636ce75036d23fc8a5a70e730addcd82738a79435"
+    },
+    {
+      "path": "scenes/block_a/reference_cameras.json",
+      "scene": "block_a",
+      "group": "localization",
+      "role": "reference_camera_metadata",
+      "size_bytes": 5311568,
+      "sha256": "34fb8d5bde70c25c86b88c9820879b3d958230386e3737509e93e082c1c0f1d1"
+    }
+  ],
+  "excluded_models": {
+    "SuperPoint_SuperGlue": "Fetch from upstream under Magic Leap terms, not mirrored",
+    "NetVLAD": "Fetch the original upstream Pitts30K checkpoint, not mirrored"
+  }
+}

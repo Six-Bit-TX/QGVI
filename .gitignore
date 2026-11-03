@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.cache/
+.env
+*.token
+checkpoints/downloads/
+checkpoints/.local/
+/assets/
+third_party/
+outputs/
+.pytest_cache/
+*.egg-info/

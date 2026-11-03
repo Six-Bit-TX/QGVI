@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-03",
+  "original_source": {
+    "files": 51,
+    "bytes": 702214,
+    "modified": false,
+    "sha256_manifest": "research/source_manifest.json"
+  },
+  "clean_environment": {
+    "python": "3.10",
+    "installed_from": "requirements.txt",
+    "unique_tests_passed": 397,
+    "optional_torch_cases_not_run": 10,
+    "runtime_and_agent_tests_passed": 36,
+    "text_cli": "passed",
+    "pnp_cli": "passed",
+    "local_http": "passed",
+    "live_text_http": "passed"
+  },
+  "model_transport": {
+    "codex_local_probe": "passed",
+    "codex_version": "0.159.2",
+    "live_model_smoke": "passed",
+    "configured_model": "gpt-6.1-sol",
+    "reasoning_effort": "low",
+    "calls": 1,
+    "scope": "JSON and attached-image transport smoke only; no new accuracy result"
+  },
+  "not_qualified": [
+    "Fresh CUDA dependency compilation on a clean machine",
+    "End-to-end fresh RGB CUDA inference in this public wrapper",
+    "End-to-end live Gaussian navigation in this public wrapper",
+    "End-to-end hosted agent quality evaluation",
+    "Docker image build",
+    "Native Windows"
+  ],
+  "gpu_jobs_started": 0,
+  "existing_research_jobs_interrupted": false,
+  "renderer_dependency": {
+    "patched_definitions_exact": 12,
+    "gsplat_source_files_verified": 154,
+    "cpu_tensor_tests_passed": 29,
+    "gpu_render_tested": false
+  }
+}

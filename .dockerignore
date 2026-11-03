@@ -1,0 +1,9 @@
+.git
+.venv
+assets
+checkpoints/.local
+outputs
+third_party
+.cache
+.env
+**/__pycache__

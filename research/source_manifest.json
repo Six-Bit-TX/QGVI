@@ -1,0 +1,375 @@
+{
+  "schema": "qgvi_original_source_snapshot_v1",
+  "snapshot_date": "2026-11-03",
+  "source_git_head": "1afc0e0fa5c83883ace770c7a98e9281934faa33",
+  "provenance": "Working-tree bytes, including uncommitted research changes; individual SHA-256 hashes are authoritative.",
+  "algorithm_source_modified": false,
+  "paths": "Repository-relative; no machine paths in this manifest.",
+  "exclusions": [
+    "credentials and environment files",
+    "native session queues and transcripts",
+    "private evaluation labels",
+    "model checkpoints and external datasets",
+    "third-party source code",
+    "AlloMap admission and job orchestration"
+  ],
+  "files": [
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/controller.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/controller.py",
+      "sha256": "e958cf978d32c5aee5ca3e959bc585524fa5721c5aed02bb355486b643fab910",
+      "size_bytes": 23407
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/protocol.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/protocol.py",
+      "sha256": "e1d69b637a8680ed38d25cae19439078f9f16088e5a9648f89cf58398ed44a04",
+      "size_bytes": 9348
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/state.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/state.py",
+      "sha256": "88dab3b386de9fcbcc93f7b54841f815b393d3f5e535866d8e1da134e6c143f0",
+      "size_bytes": 5818
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/early_exit.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/early_exit.py",
+      "sha256": "32aeb05b92291a36f933a431aa99440eb64c307edcd0876dae9c26b2a7ef5bdc",
+      "size_bytes": 9101
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/tool_host.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/tool_host.py",
+      "sha256": "6cd20d10b852e7b6a2430f56206e35c2ef0c7899ccc573bb420dee050c2080c1",
+      "size_bytes": 12481
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/io_utils.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/io_utils.py",
+      "sha256": "b1bd37fd9909f3ddc3590e3093c1517feaec76c2c587998c1a6ad73118faae70",
+      "size_bytes": 1925
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/providers.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/providers.py",
+      "sha256": "37f06499836af97f77fd4c280a350800802d429852773da2cd7d6cbf68d51ccc",
+      "size_bytes": 866
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/speed_provider.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/speed_provider.py",
+      "sha256": "a42e0020612c01620b514f4b204dbfe8e5f684b3d723eb0aeba33b1eff376b38",
+      "size_bytes": 9935
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/baselines.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/baselines.py",
+      "sha256": "8acdbcff7f6a52843e18f617d32b40c2234c1d2c82a7ea0042c05fd3b47d090e",
+      "size_bytes": 12825
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/retrieval_backend.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/retrieval_backend.py",
+      "sha256": "951fa83a6cf76288b9baad923f7dc79400a62ff4d5de3ffc62dc5f6ef40fa602",
+      "size_bytes": 35700
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/navigation_backend.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/navigation_backend.py",
+      "sha256": "da1a25fdbee19f6ed485417ce241a3f4f333c7380195d8fc055417252f2aba30",
+      "size_bytes": 29549
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/navigation_server.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/navigation_server.py",
+      "sha256": "aba917221ef6397afed21a4172c966e6706971c6c4aafb803e281f86dbadc22a",
+      "size_bytes": 5074
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/source_geometry.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/source_geometry.py",
+      "sha256": "25de66bd89fe08c2f9530c2d3262d9198b9f0722cea48a4033e797903ba89736",
+      "size_bytes": 22399
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/rgb_cache_import.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/rgb_cache_import.py",
+      "sha256": "55fadf10f9d89a351b7647657402ae78101750a8b8fe9df618833be8388c1032",
+      "size_bytes": 10040
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/PROTOCOL.md",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/PROTOCOL.md",
+      "sha256": "b27481f6b8e0e139910321328394bd5a87b4bb9e53046f0ac1b3bb13e44377d2",
+      "size_bytes": 4984
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/test_retrieval_adapter.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/test_retrieval_adapter.py",
+      "sha256": "f4e34b6d6cfdda44f7748cc4ed8fa8060a3ef0328a45a8218c16973acab57139",
+      "size_bytes": 9501
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/test_source_geometry.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/test_source_geometry.py",
+      "sha256": "c93914667800d8e7a861614800f2f862870e09f24564523e5c20f9576b3fa4c4",
+      "size_bytes": 9761
+    },
+    {
+      "group": "agent",
+      "source_path": "experiments/qgvi_a_full_eval_20261029_v1/test_rgb_cache_import.py",
+      "release_path": "research/original/experiments/qgvi_a_full_eval_20261029_v1/test_rgb_cache_import.py",
+      "sha256": "6e3d3fb780b6b2a26b0b6c9978d07ac708ee42d24ff7caf04d795464f135895d",
+      "size_bytes": 6122
+    },
+    {
+      "group": "provider_import_dependency",
+      "source_path": "experiments/agentic_locator_effort_fast_20261025_v1/providers.py",
+      "release_path": "research/original/experiments/agentic_locator_effort_fast_20261025_v1/providers.py",
+      "sha256": "7c2efdfd0c5057f5da52dcfd4720aecf921f1b4ec08b73f00f5d0cc3bec2f412",
+      "size_bytes": 31705
+    },
+    {
+      "group": "optional_subscription_adapter",
+      "source_path": "experiments/dual_model_review_20261020_v1/subscription_codex.py",
+      "release_path": "research/original/experiments/dual_model_review_20261020_v1/subscription_codex.py",
+      "sha256": "8e8f1a942373b3829c8e41ee679d1915d1a923c801f9d8421b0abbef561ae3ae",
+      "size_bytes": 20773
+    },
+    {
+      "group": "optional_subscription_adapter",
+      "source_path": "experiments/dual_model_review_20261020_v1/model_review.py",
+      "release_path": "research/original/experiments/dual_model_review_20261020_v1/model_review.py",
+      "sha256": "bc734d8c063008ee9ad8f9965833e29d18c319b2a58bca0f21bc9ed5069ad01e",
+      "size_bytes": 60533
+    },
+    {
+      "group": "geometric_localizer",
+      "source_path": "experiments/agentic_locator_comparison_20261025_v1/geometry_adapter.py",
+      "release_path": "research/original/experiments/agentic_locator_comparison_20261025_v1/geometry_adapter.py",
+      "sha256": "e31249c006b8870f628f4b9ae3302b3c250b2f327823288aa73f6db2d356eddf",
+      "size_bytes": 17522
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/catalog.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/catalog.py",
+      "sha256": "3908ccc375a5ff2bd397c8a324d9b9138684e5a858aff430e3b4f2f6ccdf73a1",
+      "size_bytes": 16094
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/confidence.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/confidence.py",
+      "sha256": "a6a94a8708d38e2750b56c49f81bfa11c686de48930f152e4fe5f7b2da18dc98",
+      "size_bytes": 12341
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/calibration.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/calibration.py",
+      "sha256": "371b66b9d270e40afd51ed1a5037ad75a3f9c577eac7704d7757c5af1a47fcd8",
+      "size_bytes": 18318
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/prepare.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/prepare.py",
+      "sha256": "f29e498cb92c60e8e39ccf50c9d15d152573815c0b3122e0f4c9d319519602b7",
+      "size_bytes": 7053
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/run_initializer.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/run_initializer.py",
+      "sha256": "549644e49b8e86ac3f7b908881b6d0fa681c74a68c0cc409fe37e0178b0c1b66",
+      "size_bytes": 19276
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/run_rgb.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/run_rgb.py",
+      "sha256": "77f61c1319209b73466d4c4bb800b51bb342322a3aec5f77b0808d39ae80239d",
+      "size_bytes": 10015
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/score_policy.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/score_policy.py",
+      "sha256": "415294163362c376e6b934352abda63e1cd13a736613c0088a652b05aa71640c",
+      "size_bytes": 12282
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/test_confidence.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/test_confidence.py",
+      "sha256": "d929bcdbb145f6d06cab327bf5b362262d543fb03b9583528888116894a3caa9",
+      "size_bytes": 8479
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/test_calibration.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/test_calibration.py",
+      "sha256": "97efc0b992067e3c2949fb9f149bf07d8da0005d83eefc4b6c0840380cf9c5b4",
+      "size_bytes": 12578
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/test_initializer.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/test_initializer.py",
+      "sha256": "4648d86abb8d475de83bdf6646c1a8d34de77b369e3ac90700faa449d6d3356d",
+      "size_bytes": 17064
+    },
+    {
+      "group": "selective_rgb",
+      "source_path": "experiments/cvpr2027_rgb/logs_selective_v2/test_score_policy.py",
+      "release_path": "research/original/experiments/cvpr2027_rgb/logs_selective_v2/test_score_policy.py",
+      "sha256": "7482da57b06263fc6227636726f2e5d01f3f23b57cdc79e2ac1852585139d548",
+      "size_bytes": 16085
+    },
+    {
+      "group": "caption_dependency",
+      "source_path": "qgvi-rag/caption_rag/__init__.py",
+      "release_path": "research/original/qgvi-rag/caption_rag/__init__.py",
+      "sha256": "4ac01282f4009c6502ea1cd44f5411827566a8f90557108f016c499e707b51d0",
+      "size_bytes": 63
+    },
+    {
+      "group": "caption_dependency",
+      "source_path": "qgvi-rag/caption_rag/pipeline.py",
+      "release_path": "research/original/qgvi-rag/caption_rag/pipeline.py",
+      "sha256": "e49b151fa617008329fa4b0bcf69f8333566a85622f8893eb2207683fe5e5880",
+      "size_bytes": 18066
+    },
+    {
+      "group": "caption_dependency",
+      "source_path": "qgvi-rag/caption_rag/retrieval.py",
+      "release_path": "research/original/qgvi-rag/caption_rag/retrieval.py",
+      "sha256": "9a4a115e49a21db9f879225299364413f07cdaa6c768c6ca51bd7fd08a77a4a0",
+      "size_bytes": 16723
+    },
+    {
+      "group": "caption_dependency",
+      "source_path": "qgvi-rag/caption_rag/vision.py",
+      "release_path": "research/original/qgvi-rag/caption_rag/vision.py",
+      "sha256": "329da777d70939a51d78d8d6746ff39fc6ef08c3451ff6b341f2d58fa0829dd3",
+      "size_bytes": 23874
+    },
+    {
+      "group": "caption_dependency",
+      "source_path": "qgvi-rag/caption_rag/credentials.py",
+      "release_path": "research/original/qgvi-rag/caption_rag/credentials.py",
+      "sha256": "5b03f0bc96434930bb7396173229b72c5eccc5650414c9278eff3a79e1c6c86a",
+      "size_bytes": 5701
+    },
+    {
+      "group": "caption_dependency",
+      "source_path": "qgvi-rag/caption_rag/cli.py",
+      "release_path": "research/original/qgvi-rag/caption_rag/cli.py",
+      "sha256": "be902544a564944e54677d4aa020bf8ca27748a4c87d00a84dcfbf369506a68a",
+      "size_bytes": 7174
+    },
+    {
+      "group": "caption_tests",
+      "source_path": "qgvi-rag/tests/test_pipeline.py",
+      "release_path": "research/original/qgvi-rag/tests/test_pipeline.py",
+      "sha256": "93cf1762b1f11ad7c64e76eef85cbc290c2f31494d2777703acce6ab9159956d",
+      "size_bytes": 10655
+    },
+    {
+      "group": "caption_tests",
+      "source_path": "qgvi-rag/tests/test_retrieval.py",
+      "release_path": "research/original/qgvi-rag/tests/test_retrieval.py",
+      "sha256": "dbc9679c4e938ac7fac3afa106e0328d438dc4439e064d4eb4739ede050a04f2",
+      "size_bytes": 14976
+    },
+    {
+      "group": "caption_tests",
+      "source_path": "qgvi-rag/tests/test_vision.py",
+      "release_path": "research/original/qgvi-rag/tests/test_vision.py",
+      "sha256": "7ced19b51e31bd153a34375158711c280603395f38e6da951874bddc1d6ce6cb",
+      "size_bytes": 28975
+    },
+    {
+      "group": "caption_tests",
+      "source_path": "qgvi-rag/tests/test_credentials.py",
+      "release_path": "research/original/qgvi-rag/tests/test_credentials.py",
+      "sha256": "4c1aff2ac84a6aacf43216246a7d9d4d6e63bd53db6926232cc278f883532823",
+      "size_bytes": 6330
+    },
+    {
+      "group": "caption_tests",
+      "source_path": "qgvi-rag/tests/test_caption_scheduling.py",
+      "release_path": "research/original/qgvi-rag/tests/test_caption_scheduling.py",
+      "sha256": "c32ee30e3ef8411927b8b839e3f80865690e93164e8e342101a27d91a736f1b9",
+      "size_bytes": 6506
+    },
+    {
+      "group": "gaussian_renderer",
+      "source_path": "qgvi/qgvi/__init__.py",
+      "release_path": "research/original/qgvi/qgvi/__init__.py",
+      "sha256": "947638a31fba4c3c717a11e4700746e04cd8d9f825149beebcd1b45987cb351a",
+      "size_bytes": 60
+    },
+    {
+      "group": "gaussian_renderer",
+      "source_path": "qgvi/qgvi/multiscene_renderer.py",
+      "release_path": "research/original/qgvi/qgvi/multiscene_renderer.py",
+      "sha256": "149180723c7c568c2f5980a1e904e05aadbb46f6aeb1ce19c8b2d27137d6220a",
+      "size_bytes": 18037
+    },
+    {
+      "group": "gaussian_renderer_tests",
+      "source_path": "qgvi/tests/test_multiscene_renderer.py",
+      "release_path": "research/original/qgvi/tests/test_multiscene_renderer.py",
+      "sha256": "bbe48baad04c643432bf37efff71452c9c855eeb03fea923ff7fe4e5fd243ed7",
+      "size_bytes": 11054
+    },
+    {
+      "group": "gaussian_renderer_tests",
+      "source_path": "qgvi/tests/test_multiscene_empty_render.py",
+      "release_path": "research/original/qgvi/tests/test_multiscene_empty_render.py",
+      "sha256": "f8589e322031333cbdefc835a07dace606159e1803a71a18d36b1b6977eefc66",
+      "size_bytes": 2086
+    },
+    {
+      "group": "matched_baseline_policy",
+      "source_path": "experiments/qgvi_a_target_baselines_20261102_v1/policies.py",
+      "release_path": "research/original/experiments/qgvi_a_target_baselines_20261102_v1/policies.py",
+      "sha256": "a95356a09b4375e319087570dee65d8288f48102daf36dee3974eeae8a1180e0",
+      "size_bytes": 15088
+    },
+    {
+      "group": "matched_baseline_policy",
+      "source_path": "experiments/qgvi_a_target_baselines_20261102_v1/test_policies.py",
+      "release_path": "research/original/experiments/qgvi_a_target_baselines_20261102_v1/test_policies.py",
+      "sha256": "20368e807e642e55b5c1c7c6f5754a3fd3dc8346b03941286d4343adfdcf3341",
+      "size_bytes": 12823
+    },
+    {
+      "group": "matched_baseline_policy",
+      "source_path": "experiments/qgvi_a_target_baselines_20261102_v1/PROTOCOL.md",
+      "release_path": "research/original/experiments/qgvi_a_target_baselines_20261102_v1/PROTOCOL.md",
+      "sha256": "5707afe1742103bfe3df87c7fe6c62e89847c952b40333254e8ff00a71d352a0",
+      "size_bytes": 5069
+    }
+  ]
+}

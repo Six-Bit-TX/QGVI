@@ -1,0 +1,26 @@
+Queryable Gaussian View Index — demonstration assets
+
+Authors: Tianyu Xiong, Rui Li, Jiaqi Yang
+Paper and project illustrations: QGVI authors, 2026.
+
+The demo uses selected, cached research observations from nine scenes:
+MatrixCity (Block A, Block Small), UC-GS (NYC, SF), and the HorizonGS
+scene collection (CitySample, Colosseum, ElvenRuin, Park, Road).
+The current paper cites these datasets and HorizonGS and describes
+reconstruction and evaluation protocols.
+
+Caption search: 78 selected posed views (41 original training images and
+37 Gaussian grid renders), with stored captions. Full image frames are
+preserved in proportional thumbnails. Some cached renders contain artifacts.
+Reference-image and dataset rights remain with their respective creators.
+This website does not assign a new license to the underlying scene assets.
+
+RGB replay: saved LoGS geometric initialization and distinct-keypoint
+acceptance decisions. The examples are synthetic-scene imagery.
+Agent replay: the complete eight-decision block_a_002_q2 trace; images
+are cached observations. Predicate checks and final review are model
+assessments, not human ground truth. The example is selected for illustration.
+
+Images used here do not require a Gaussian checkpoint or GPU to display.
+No model calls, analytics, external fonts, or image uploads are made by the demo.
+See the accompanying paper for the full methods, limitations, and references.

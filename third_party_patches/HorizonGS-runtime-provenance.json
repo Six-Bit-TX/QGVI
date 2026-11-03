@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/InternRobotics/HorizonGS",
+  "upstream_commit": "56f9c82a4e84796ba7c496429504dd4ab68127f5",
+  "patch": "HorizonGS-runtime.patch",
+  "patch_sha256": "d981bff4d77486f24cd03ea49b78cc703682adec5e62d538a1dfc233436f8665",
+  "scope": "Runtime delta used by QGVI multiscene_renderer; selected definitions byte-identical to evaluated recovered checkout. Upstream training functions and imports are retained. Not a full training checkout reproduction.",
+  "files": [
+    {
+      "path": "gaussian_renderer/render.py",
+      "upstream_sha256": "5892fb4bb97c3e18b45cef5012f807e4d5ddf23a129443fae1246bb4b5e0126f",
+      "patched_sha256": "9334282d64edbf1db9b8b9ccb6c2e4508ce1233ba2fab8b6f27793fc76113b3a",
+      "evaluated_file_sha256": "9334282d64edbf1db9b8b9ccb6c2e4508ce1233ba2fab8b6f27793fc76113b3a",
+      "selected_definitions": [
+        {
+          "name": "prefilter_explicit_gaussians",
+          "sha256": "ce2f126242fbff79d64fdd836a3835b694b4cdee79cccb3f5ac3d9104d6c49e4",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "render",
+          "sha256": "c2a39b2aa34d6e1f25a447646c330e9319fd328ed728345d1e0a2005013c7ecd",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "prefilter_voxel",
+          "sha256": "447d5a628cee9e55022af69f4b05a5e226e718ee2a8190d6c81fbaa2dc88e3db",
+          "matches_evaluated_source": true
+        }
+      ]
+    },
+    {
+      "path": "scene/basic_model.py",
+      "upstream_sha256": "e2213364089fd616d7d9ef7c6f0e197bafc74487a0d6eaf81b30c3800974d9db",
+      "patched_sha256": "03515b49dc4c1355215e2cad44acd5cd090637840e80ea698011e4b0c4f0de5e",
+      "evaluated_file_sha256": "6460eacd2ccbab481a0e4940022bb06ee3a60c2ddf3e31550e1e3920d6bcba4d",
+      "selected_definitions": [
+        {
+          "name": "BasicModel.generate_neural_gaussians",
+          "sha256": "81aa53ec67737e8790501ef5340b9cc870a9307ce0a2741a9a10c19cf26b8d1c",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "BasicModel.generate_explicit_gaussians",
+          "sha256": "c5be230e42e60932a4663fb6e94bb56c7dabff6c615e912ae20d66528ec76829",
+          "matches_evaluated_source": true
+        }
+      ]
+    },
+    {
+      "path": "scene/lod_model.py",
+      "upstream_sha256": "12077cd7c833da1bb3fffa425cd8cc6b18cf93bf6d70b6d1f510b1e53e55b572",
+      "patched_sha256": "df1d483d576650ca92353a60024198a3aa43ad9acbea62bfdf40203041ec615d",
+      "evaluated_file_sha256": "f3df7432374c1bf8376b3f339888f426d3d27c4fdb29f2824dc9e3ac3007ad0b",
+      "selected_definitions": [
+        {
+          "name": "GaussianLoDModel.__init__",
+          "sha256": "cc5a65a755f7472fb29dcbed42bbbdb070d9d9d57e95f0d3e5c50f7c50b4c5ec",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "GaussianLoDModel.set_anchor_mask",
+          "sha256": "e711a11b3a2e3f6386212ae5569f71be12376e7ff6cd4a6b6868798c9babcf60",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "GaussianLoDModel.set_gs_mask",
+          "sha256": "e5046a5defc937bfd988bbc16d8c7ed86b447522ef7a277e0d1cbca3a787649d",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "GaussianLoDModel.load_explicit",
+          "sha256": "7b77662c2a4d80b2edb701ca852eae6dd1d12179d1fe2d07d52ddd174b64602c",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "GaussianLoDModel._set_anchor_mask_chunked",
+          "sha256": "8c9ed280cd13b818eb2601e48e0c348af124516fbe8a6bd9646b0f7f67e4e73e",
+          "matches_evaluated_source": true
+        }
+      ]
+    },
+    {
+      "path": "utils/streaming_ply.py",
+      "upstream_sha256": null,
+      "patched_sha256": "7146cbc5488016d2545cc784eac0742587ff84c9116ea3b71d078a4d1a8e81fd",
+      "evaluated_file_sha256": "f50ddaad919cc1d2200ea711042cb993952c08e8ff44d2ef6038172c21388142",
+      "selected_definitions": [
+        {
+          "name": "BinaryFloatPly",
+          "sha256": "fe729f4dd12917e90bbedabf8f7885a19776cedae28c30dee441a3ac8d4314de",
+          "matches_evaluated_source": true
+        },
+        {
+          "name": "read_binary_float_ply",
+          "sha256": "4d9e8c1b742bc28658b02e4f95a0818b6c5b06810abceffef80782006882ad82",
+          "matches_evaluated_source": true
+        }
+      ]
+    }
+  ],
+  "excluded_local_changes": [
+    "training and checkpoint capture/restore",
+    "anchor growth and rollback",
+    "PLY saving and merging",
+    "dataset loading and lazy camera materialization",
+    "video output and preprocessing",
+    "training orchestration and logs"
+  ],
+  "license": "HorizonGS-LICENSE.md",
+  "verification": {
+    "applies_to_pinned_clean_source": true,
+    "selected_definition_parity": true,
+    "gpu_execution": false,
+    "compiled_extension_reproduction": false,
+    "cpu_tensor_tests": {
+      "passed": 29,
+      "deselected": 7,
+      "cuda_devices_hidden": true,
+      "selection": "chunked_anchor_mask or progressive_anchor_mask or chunked_neural_prefilter or sparse_render_gathers or explicit_gather or chunked_explicit_lod_mask or explicit_all_visible or explicit_prefilter",
+      "test_sources": [
+        {
+          "path": "repro/tests/test_neural_memory_paths.py",
+          "sha256": "8b577599ae79423f42052e48ae850bd3281539c51e9b90af40179dc2d02867a4"
+        },
+        {
+          "path": "repro/tests/test_block_a_memory_paths.py",
+          "sha256": "520d6b82001144a29244e35e681918f81bbf072aecc21362dcf5c08cbf213ad6"
+        }
+      ]
+    },
+    "release_patch_tests": {
+      "passed": 7,
+      "file": "tests/test_renderer_patch.py",
+      "scope": "source provenance, license presence, valid and malformed binary PLY parsing"
+    }
+  }
+}

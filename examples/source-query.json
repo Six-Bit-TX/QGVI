@@ -1,0 +1,31 @@
+{
+  "id": "sf_000",
+  "scene": "sf",
+  "K": [
+    [
+      256.0,
+      0.0,
+      256.0
+    ],
+    [
+      0.0,
+      256.0,
+      128.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "width": 512,
+  "height": 256,
+  "excluded_reference_names": [
+    "00038_street.png"
+  ],
+  "source_image": "sf-query.png",
+  "output_type": "source_camera_pose",
+  "instruction": "Estimate the camera pose of this image in the SF map.",
+  "predicates": [],
+  "domain": "street"
+}

@@ -1,0 +1,826 @@
+diff --git a/gaussian_renderer/render.py b/gaussian_renderer/render.py
+--- a/gaussian_renderer/render.py
++++ b/gaussian_renderer/render.py
+@@ -8,10 +8,81 @@
+ #
+ # For inquiries contact  george.drettakis@inria.fr
+ #
++import os
+ import torch
+ import math
+ import gsplat
+ from gsplat.cuda._wrapper import fully_fused_projection, fully_fused_projection_2dgs
++
++
++@torch.no_grad()
++def prefilter_explicit_gaussians(viewpoint_camera, pc, visible_mask):
++    """Remove radius-zero explicit Gaussians with bounded projection scratch."""
++    if pc.gs_attr != "3D":
++        raise ValueError("explicit frustum prefilter currently requires 3D Gaussians")
++    vertex_count = pc._xyz.shape[0]
++    if (
++        visible_mask.dtype != torch.bool
++        or visible_mask.shape != (vertex_count,)
++        or visible_mask.device != pc._xyz.device
++    ):
++        raise ValueError("invalid explicit Gaussian visibility mask")
++    chunk_size = int(
++        os.environ.get("HORIZONGS_EXPLICIT_PREFILTER_CHUNK_SIZE", "4194304")
++    )
++    if chunk_size <= 0:
++        raise ValueError("HORIZONGS_EXPLICIT_PREFILTER_CHUNK_SIZE must be positive")
++
++    K = torch.tensor([
++        [viewpoint_camera.fx, 0, viewpoint_camera.cx],
++        [0, viewpoint_camera.fy, viewpoint_camera.cy],
++        [0, 0, 1],
++    ], dtype=torch.float32, device=pc._xyz.device)[None]
++    viewmats = viewpoint_camera.world_view_transform.transpose(0, 1)[None]
++    fallback_index = None
++
++    for start in range(0, vertex_count, chunk_size):
++        end = min(start + chunk_size, vertex_count)
++        chunk_mask = visible_mask[start:end]
++        selected = torch.nonzero(chunk_mask, as_tuple=False).squeeze(1)
++        if selected.numel() == 0:
++            continue
++        if fallback_index is None:
++            fallback_index = start + int(selected[0].item())
++        means = torch.index_select(pc._xyz[start:end], 0, selected)
++        quats = torch.index_select(pc._rotation[start:end], 0, selected)
++        scales = torch.index_select(pc._scaling[start:end], 0, selected)
++        opacities = torch.index_select(pc._opacity[start:end, 0], 0, selected)
++        projection = fully_fused_projection(
++            means,
++            None,
++            quats,
++            scales,
++            viewmats,
++            K,
++            int(viewpoint_camera.image_width),
++            int(viewpoint_camera.image_height),
++            eps2d=0.3,
++            packed=False,
++            near_plane=0.01,
++            far_plane=1e10,
++            radius_clip=0.0,
++            sparse_grad=False,
++            calc_compensations=False,
++            opacities=opacities,
++        )
++        radii = projection[0].squeeze(0)
++        if radii.ndim > 1:
++            radii = radii.amax(dim=-1)
++        chunk_mask[selected] = radii > 0
++        del selected, means, quats, scales, opacities, projection, radii
++
++    # A single known radius-zero sentinel lets gsplat produce the exact empty
++    # background without relying on version-specific N=0 kernel behavior.
++    if fallback_index is not None and not bool(torch.any(visible_mask).item()):
++        visible_mask[fallback_index] = True
++    return visible_mask
++
+ 
+ def render(viewpoint_camera, pc, pipe, bg_color):
+     """
+@@ -22,6 +93,10 @@
+     if pc.explicit_gs:
+         pc.set_gs_mask(viewpoint_camera.camera_center, viewpoint_camera.resolution_scale)
+         visible_mask = pc._gs_mask
++        if getattr(pipe, "explicit_prefilter", False):
++            visible_mask = prefilter_explicit_gaussians(
++                viewpoint_camera, pc, visible_mask
++            )
+         xyz, color, opacity, scaling, rot, sh_degree, selection_mask = pc.generate_explicit_gaussians(visible_mask)
+     else:
+         pc.set_anchor_mask(viewpoint_camera.camera_center, viewpoint_camera.resolution_scale)
+@@ -86,7 +161,11 @@
+         depth = None
+ 
+     rendered_image = colors[0].permute(2, 0, 1)
+-    radii = info["radii"].squeeze(0) # [N,]
++    radii = info["radii"].squeeze(0)
++    # gsplat >=1.5 returns per-axis radii with shape [N, 2]. HorizonGS
++    # consumes one visibility/radius value per Gaussian.
++    if radii.ndim > 1:
++        radii = radii.amax(dim=-1)
+     try:
+         info["means2d"].retain_grad() # [1, N, 2]
+     except:
+@@ -117,81 +196,85 @@
+ 
+     return return_dict
+ 
++@torch.no_grad()
+ def prefilter_voxel(viewpoint_camera, pc):
+-    """
+-    Render the scene. 
+-    
+-    Background tensor (bg_color) must be on GPU!
+-    """
+-    means = pc.get_anchor[pc._anchor_mask]
+-    scales = pc.get_scaling[pc._anchor_mask][:, :3]
+-    quats = pc.get_rotation[pc._anchor_mask]
+-    
+-    # Set up rasterization configuration
++    """Remove radius-zero neural anchors with bounded projection scratch."""
++    anchor_count = pc._anchor.shape[0]
++    if (
++        pc._anchor_mask.dtype != torch.bool
++        or pc._anchor_mask.shape != (anchor_count,)
++        or pc._anchor_mask.device != pc._anchor.device
++    ):
++        raise ValueError("invalid neural Gaussian anchor visibility mask")
++    chunk_size = int(
++        os.environ.get("HORIZONGS_NEURAL_PREFILTER_CHUNK_SIZE", "4194304")
++    )
++    if chunk_size <= 0:
++        raise ValueError("HORIZONGS_NEURAL_PREFILTER_CHUNK_SIZE must be positive")
++
++    visible_mask = pc._anchor_mask.clone()
+     Ks = torch.tensor([
+-            [viewpoint_camera.fx, 0, viewpoint_camera.cx],
+-            [0, viewpoint_camera.fy, viewpoint_camera.cy],
+-            [0, 0, 1],
+-        ],dtype=torch.float32, device="cuda")[None]
++        [viewpoint_camera.fx, 0, viewpoint_camera.cx],
++        [0, viewpoint_camera.fy, viewpoint_camera.cy],
++        [0, 0, 1],
++    ], dtype=torch.float32, device=pc._anchor.device)[None]
+     viewmats = viewpoint_camera.world_view_transform.transpose(0, 1)[None]
+ 
+-    N = means.shape[0]
+-    C = viewmats.shape[0]
+-    device = means.device
+-    assert means.shape == (N, 3), means.shape
+-    assert quats.shape == (N, 4), quats.shape
+-    assert scales.shape == (N, 3), scales.shape
+-    assert viewmats.shape == (C, 4, 4), viewmats.shape
+-    assert Ks.shape == (C, 3, 3), Ks.shape
+-
+-    # Project Gaussians to 2D. Directly pass in {quats, scales} is faster than precomputing covars.
+-    if pc.gs_attr == "3D":
+-        proj_results = fully_fused_projection(
+-            means,
+-            None,  # covars,
+-            quats,
+-            scales,
+-            viewmats,
+-            Ks,
+-            int(viewpoint_camera.image_width),
+-            int(viewpoint_camera.image_height),
+-            eps2d=0.3,
+-            packed=False,
+-            near_plane=0.01,
+-            far_plane=1e10,
+-            radius_clip=0.0,
+-            sparse_grad=False,
+-            calc_compensations=False,
+-        )
+-    elif pc.gs_attr == "2D":
+-        densifications = (
+-            torch.zeros((C, N, 2), dtype=means.dtype, device="cuda")
+-        )
+-        # Project Gaussians to 2D. Directly pass in {quats, scales} is faster than precomputing covars.
+-        proj_results = fully_fused_projection_2dgs(
+-            means,
+-            quats,
+-            scales,
+-            viewmats,
+-            densifications,
+-            Ks,
+-            int(viewpoint_camera.image_width),
+-            int(viewpoint_camera.image_height),
+-            eps2d=0.3,
+-            packed=False,
+-            near_plane=0.01,
+-            far_plane=1e10,
+-            radius_clip=0.0,
+-            sparse_grad=False,
+-        )
+-    else:
+-        raise ValueError(f"Unknown gs_attr: {pc.gs_attr}")
+-    
+-    # The results are with shape [C, N, ...]. Only the elements with radii > 0 are valid.
+-    radii, means2d, depths, conics, compensations = proj_results
+-    camera_ids, gaussian_ids = None, None
+-    
+-    visible_mask = pc._anchor_mask.clone()
+-    visible_mask[pc._anchor_mask] = radii.squeeze(0) > 0
+-
+-    return visible_mask
+\ No newline at end of file
++    for start in range(0, anchor_count, chunk_size):
++        end = min(start + chunk_size, anchor_count)
++        chunk_mask = visible_mask[start:end]
++        selected = torch.nonzero(chunk_mask, as_tuple=False).squeeze(1)
++        if selected.numel() == 0:
++            continue
++        means = torch.index_select(pc._anchor[start:end], 0, selected)
++        scales = pc.scaling_activation(
++            torch.index_select(pc._scaling[start:end, :3], 0, selected)
++        )
++        quats = pc.rotation_activation(
++            torch.index_select(pc._rotation[start:end], 0, selected)
++        )
++
++        if pc.gs_attr == "3D":
++            projection = fully_fused_projection(
++                means,
++                None,
++                quats,
++                scales,
++                viewmats,
++                Ks,
++                int(viewpoint_camera.image_width),
++                int(viewpoint_camera.image_height),
++                eps2d=0.3,
++                packed=False,
++                near_plane=0.01,
++                far_plane=1e10,
++                radius_clip=0.0,
++                sparse_grad=False,
++                calc_compensations=False,
++            )
++        elif pc.gs_attr == "2D":
++            projection = fully_fused_projection_2dgs(
++                means,
++                quats,
++                scales,
++                viewmats,
++                Ks,
++                int(viewpoint_camera.image_width),
++                int(viewpoint_camera.image_height),
++                eps2d=0.3,
++                packed=False,
++                near_plane=0.01,
++                far_plane=1e10,
++                radius_clip=0.0,
++                sparse_grad=False,
++            )
++        else:
++            raise ValueError(f"Unknown gs_attr: {pc.gs_attr}")
++
++        radii = projection[0].squeeze(0)
++        if radii.ndim > 1:
++            radii = radii.amax(dim=-1)
++        chunk_mask[selected] = radii > 0
++        del selected, means, scales, quats, projection, radii
++
++    return visible_mask
+diff --git a/scene/basic_model.py b/scene/basic_model.py
+--- a/scene/basic_model.py
++++ b/scene/basic_model.py
+@@ -302,7 +302,7 @@
+         anchor = self.get_anchor[visible_mask]
+         feat = self.get_anchor_feat[visible_mask]
+         grid_offsets = self.get_offset[visible_mask]
+-        grid_scaling = self.get_scaling[visible_mask]
++        grid_scaling = self.scaling_activation(self._scaling[visible_mask])
+ 
+         ## get view properties for anchor
+         ob_view = anchor - viewpoint_camera.camera_center
+@@ -350,12 +350,18 @@
+         # offsets
+         offsets = grid_offsets.view([-1, 3]) # [mask]
+         
+-        # combine for parallel masking
+-        concatenated = torch.cat([grid_scaling, anchor], dim=-1)
+-        concatenated_repeated = repeat(concatenated, 'n (c) -> (n k) (c)', k=self.n_offsets)
+-        concatenated_all = torch.cat([concatenated_repeated, color, scale_rot, offsets], dim=-1)
+-        masked = concatenated_all[mask]
+-        scaling_repeat, repeat_anchor, color, scale_rot, offsets = masked.split([6, 3, self.color_dim, 7, 3], dim=-1)
++        # Gather only positive-opacity offsets. Building and then masking a dense
++        # [visible anchors * offsets, 19 + color_dim] concatenation consumes
++        # tens of GiB in the largest Block A views.
++        selected_offsets = torch.nonzero(mask, as_tuple=False).squeeze(1)
++        selected_anchors = torch.div(
++            selected_offsets, self.n_offsets, rounding_mode="floor"
++        )
++        scaling_repeat = grid_scaling[selected_anchors]
++        repeat_anchor = anchor[selected_anchors]
++        color = color[selected_offsets]
++        scale_rot = scale_rot[selected_offsets]
++        offsets = offsets[selected_offsets]
+         
+         # post-process cov
+         scaling = scaling_repeat[:,3:] * torch.sigmoid(scale_rot[:,:3]) # * (1+torch.sigmoid(repeat_dist))
+@@ -372,15 +378,50 @@
+ 
+     def generate_explicit_gaussians(self, visible_mask=None):
+         if visible_mask is None:
+-            visible_mask = torch.ones(self._xyz.shape[0], dtype=torch.bool, device = self._xyz.device)
+-
+-        xyz = self._xyz[visible_mask]
+-        color = torch.cat((self._features_dc, self._features_rest), dim=1)[visible_mask]
+-        opacity = self._opacity[visible_mask]
+-        scaling = self._scaling[visible_mask]
+-        rot = self._rotation[visible_mask]
+-        mask = torch.ones(self._xyz.shape[0], dtype=torch.bool, device="cuda")
+-        return xyz, color, opacity, scaling, rot, self.active_sh_degree, mask
++            all_visible = True
++        else:
++            if (
++                visible_mask.dtype != torch.bool
++                or visible_mask.shape != (self._xyz.shape[0],)
++                or visible_mask.device != self._xyz.device
++            ):
++                raise ValueError("invalid explicit Gaussian visibility mask")
++            all_visible = bool(torch.all(visible_mask).item())
++        if all_visible:
++            xyz = self._xyz
++            if getattr(self, "_features", None) is not None and self._features.numel():
++                color = self._features
++            else:
++                color = torch.cat((self._features_dc, self._features_rest), dim=1)
++            opacity = self._opacity
++            scaling = self._scaling
++            rot = self._rotation
++        else:
++            selected = torch.nonzero(visible_mask, as_tuple=False).squeeze(1)
++            xyz = torch.index_select(self._xyz, 0, selected)
++            if getattr(self, "_features", None) is not None and self._features.numel():
++                color = torch.index_select(self._features, 0, selected)
++            else:
++                features_dc = torch.index_select(self._features_dc, 0, selected)
++                features_rest = torch.index_select(self._features_rest, 0, selected)
++                color = torch.cat((features_dc, features_rest), dim=1)
++            opacity = torch.index_select(self._opacity, 0, selected)
++            scaling = torch.index_select(self._scaling, 0, selected)
++            rot = torch.index_select(self._rotation, 0, selected)
++
++        selection_mask = getattr(self, "_selection_mask", None)
++        if (
++            selection_mask is None
++            or selection_mask.shape != (self._xyz.shape[0],)
++            or selection_mask.device != self._xyz.device
++        ):
++            selection_mask = torch.ones(
++                self._xyz.shape[0], dtype=torch.bool, device=self._xyz.device
++            )
++            self._selection_mask = selection_mask
++        return (
++            xyz, color, opacity, scaling, rot, self.active_sh_degree, selection_mask
++        )
+ 
+     def load_config(self, model_path):
+         config_path = os.path.join(os.path.dirname(os.path.dirname(model_path)), "config.yaml")
+diff --git a/scene/lod_model.py b/scene/lod_model.py
+--- a/scene/lod_model.py
++++ b/scene/lod_model.py
+@@ -25,6 +25,7 @@
+ from scene.embedding import Embedding
+ from scene.basic_model import BasicModel
+ from utils.system_utils import searchForMaxIteration
++from utils.streaming_ply import read_binary_float_ply
+     
+ class GaussianLoDModel(BasicModel):
+ 
+@@ -40,6 +41,7 @@
+         self._rotation = torch.empty(0)
+         self._level = torch.empty(0)
+         self._extra_level = torch.empty(0)
++        self._features = torch.empty(0)
+ 
+         self.offset_opacity_accum = torch.empty(0)
+         self.anchor_opacity_accum = torch.empty(0)
+@@ -284,16 +286,133 @@
+             self.freeze_mlp(self.embedding_appearance)
+ 
+     def set_anchor_mask(self, cam_center, resolution_scale):
+-        dist = torch.sqrt(torch.sum((self.get_anchor - cam_center)**2, dim=1)) * resolution_scale
+-        pred_level = torch.log2(self.standard_dist/dist)/math.log2(self.fork) + self._extra_level
+-        int_level = self.map_to_int_level(pred_level, self.street_levels - 1)
+-        self._anchor_mask = (self._level.squeeze(dim=1) <= int_level)
+-    
++        if self.dist2level == "progressive":
++            dist = torch.sqrt(torch.sum((self.get_anchor - cam_center) ** 2, dim=1)) * resolution_scale
++            pred_level = torch.log2(self.standard_dist / dist) / math.log2(self.fork) + self._extra_level
++            pred_level = torch.clamp(
++                pred_level + 1.0,
++                min=0.9999,
++                max=self.street_levels - 1 + 0.9999,
++            )
++            int_level = torch.floor(pred_level).int()
++            self._prog_ratio = torch.frac(pred_level).unsqueeze(dim=1)
++            self.transition_mask = (
++                self._level.squeeze(dim=1) == int_level
++            )
++            self._anchor_mask = (
++                self._level.squeeze(dim=1) <= int_level
++            )
++            return
++        return GaussianLoDModel._set_anchor_mask_chunked(
++            self, cam_center, resolution_scale
++        )
++
++    @torch.no_grad()
++    def _set_anchor_mask_chunked(self, cam_center, resolution_scale):
++        anchor_count = self._anchor.shape[0]
++        current_mask = getattr(self, "_anchor_mask", None)
++        if (
++            current_mask is None
++            or current_mask.shape != (anchor_count,)
++            or current_mask.dtype != torch.bool
++            or current_mask.device != self._anchor.device
++        ):
++            self._anchor_mask = torch.empty(
++                anchor_count, dtype=torch.bool, device=self._anchor.device
++            )
++        chunk_size = int(
++            os.environ.get("HORIZONGS_ANCHOR_MASK_CHUNK_SIZE", "4194304")
++        )
++        if chunk_size <= 0:
++            raise ValueError("HORIZONGS_ANCHOR_MASK_CHUNK_SIZE must be positive")
++        for start in range(0, anchor_count, chunk_size):
++            end = min(start + chunk_size, anchor_count)
++            dist = torch.sqrt(
++                torch.sum((self._anchor[start:end] - cam_center) ** 2, dim=1)
++            ) * resolution_scale
++            pred_level = (
++                torch.log2(self.standard_dist / dist) / math.log2(self.fork)
++                + self._extra_level[start:end]
++            )
++            if self.dist2level == "floor":
++                int_level = torch.floor(pred_level).int()
++                int_level = torch.clamp(
++                    int_level, min=0, max=self.street_levels - 1
++                )
++            elif self.dist2level == "round":
++                int_level = torch.round(pred_level).int()
++                int_level = torch.clamp(
++                    int_level, min=0, max=self.street_levels - 1
++                )
++            elif self.dist2level == "ceil":
++                int_level = torch.ceil(pred_level).int()
++                int_level = torch.clamp(
++                    int_level, min=0, max=self.street_levels - 1
++                )
++            else:
++                raise ValueError(f"Unknown dist2level: {self.dist2level}")
++            self._anchor_mask[start:end].copy_(
++                self._level[start:end].squeeze(dim=1) <= int_level
++            )
++            del dist, pred_level, int_level
++    
++    @torch.no_grad()
+     def set_gs_mask(self, cam_center, resolution_scale):
+-        dist = torch.sqrt(torch.sum((self._xyz - cam_center)**2, dim=1)) * resolution_scale
+-        pred_level = torch.log2(self.standard_dist/dist)/math.log2(self.fork) + self._extra_level
+-        int_level = self.map_to_int_level(pred_level, self.street_levels - 1)
+-        self._gs_mask = (self._level.squeeze(dim=1) <= int_level)
++        vertex_count = self._xyz.shape[0]
++        current_mask = getattr(self, "_gs_mask", None)
++        if (
++            current_mask is None
++            or current_mask.shape != (vertex_count,)
++            or current_mask.device != self._xyz.device
++        ):
++            self._gs_mask = torch.empty(
++                vertex_count, dtype=torch.bool, device=self._xyz.device
++            )
++        chunk_size = int(os.environ.get("HORIZONGS_GS_MASK_CHUNK_SIZE", "1048576"))
++        if chunk_size <= 0:
++            raise ValueError("HORIZONGS_GS_MASK_CHUNK_SIZE must be positive")
++        if self.dist2level == "progressive":
++            self._prog_ratio = torch.empty(
++                (vertex_count, 1), dtype=torch.float32, device=self._xyz.device
++            )
++            self.transition_mask = torch.empty(
++                vertex_count, dtype=torch.bool, device=self._xyz.device
++            )
++        for start in range(0, vertex_count, chunk_size):
++            end = min(start + chunk_size, vertex_count)
++            dist = torch.sqrt(
++                torch.sum((self._xyz[start:end] - cam_center) ** 2, dim=1)
++            ) * resolution_scale
++            pred_level = (
++                torch.log2(self.standard_dist / dist) / math.log2(self.fork)
++                + self._extra_level[start:end]
++            )
++            if self.dist2level == "floor":
++                int_level = torch.floor(pred_level).int()
++            elif self.dist2level == "round":
++                int_level = torch.round(pred_level).int()
++            elif self.dist2level == "ceil":
++                int_level = torch.ceil(pred_level).int()
++            elif self.dist2level == "progressive":
++                pred_level = torch.clamp(
++                    pred_level + 1.0, min=0.9999, max=self.street_levels - 0.0001
++                )
++                int_level = torch.floor(pred_level).int()
++                self._prog_ratio[start:end].copy_(
++                    torch.frac(pred_level).unsqueeze(dim=1)
++                )
++                self.transition_mask[start:end].copy_(
++                    self._level[start:end].squeeze(dim=1) == int_level
++                )
++            else:
++                raise ValueError("Unknown dist2level: {}".format(self.dist2level))
++            int_level = torch.clamp(
++                int_level, min=0, max=self.street_levels - 1
++            )
++            self._gs_mask[start:end].copy_(
++                self._level[start:end].squeeze(dim=1) <= int_level
++            )
++            del dist, pred_level, int_level
+ 
+     def training_setup(self, training_args):
+         
+@@ -779,54 +898,143 @@
+             ])
+         plydata.write(path)
+ 
++    @torch.no_grad()
+     def load_explicit(self, path):
+-        plydata = PlyData.read(path)
+-        infos = plydata.obj_info
+-        for info in infos:
+-            var_name = info.split(' ')[0]
+-            self.__dict__[var_name] = float(info.split(' ')[1])
+-    
+-        xyz = np.stack((np.asarray(plydata.elements[0]["x"]),
+-                        np.asarray(plydata.elements[0]["y"]),
+-                        np.asarray(plydata.elements[0]["z"])),  axis=1).astype(np.float32)
+-        
+-        opacities = np.asarray(plydata.elements[0]["opacity"])[..., np.newaxis]
+-        levels = np.asarray(plydata.elements[0]["level"])[... ,np.newaxis].astype(np.int16)
+-        extra_levels = np.asarray(plydata.elements[0]["extra_level"])[... ,np.newaxis].astype(np.float32)
+-        features_dc = np.zeros((xyz.shape[0], 3, 1))
+-        features_dc[:, 0, 0] = np.asarray(plydata.elements[0]["f_dc_0"])
+-        features_dc[:, 1, 0] = np.asarray(plydata.elements[0]["f_dc_1"])
+-        features_dc[:, 2, 0] = np.asarray(plydata.elements[0]["f_dc_2"])
+-
+-        extra_f_names = [p.name for p in plydata.elements[0].properties if p.name.startswith("f_rest_")]
+-        extra_f_names = sorted(extra_f_names, key = lambda x: int(x.split('_')[-1]))
+-        features_extra = np.zeros((xyz.shape[0], len(extra_f_names)))
+-        for idx, attr_name in enumerate(extra_f_names):
+-            features_extra[:, idx] = np.asarray(plydata.elements[0][attr_name])
+-        # Reshape (P,F*SH_coeffs) to (P, F, SH_coeffs except DC)
+-        features_extra = features_extra.reshape((features_extra.shape[0], 3, -1))
+-
+-        scale_names = [p.name for p in plydata.elements[0].properties if p.name.startswith("scale_")]
+-        scale_names = sorted(scale_names, key = lambda x: int(x.split('_')[-1]))
+-        scales = np.zeros((xyz.shape[0], len(scale_names)))
+-        for idx, attr_name in enumerate(scale_names):
+-            scales[:, idx] = np.asarray(plydata.elements[0][attr_name])
+-
+-        rot_names = [p.name for p in plydata.elements[0].properties if p.name.startswith("rot")]
+-        rot_names = sorted(rot_names, key = lambda x: int(x.split('_')[-1]))
+-        rots = np.zeros((xyz.shape[0], len(rot_names)))
+-        for idx, attr_name in enumerate(rot_names):
+-            rots[:, idx] = np.asarray(plydata.elements[0][attr_name])
+-
+-        self._xyz = nn.Parameter(torch.tensor(xyz, dtype=torch.float, device="cuda").requires_grad_(True))
+-        self._features_dc = nn.Parameter(torch.tensor(features_dc, dtype=torch.float, device="cuda").transpose(1, 2).contiguous().requires_grad_(True))
+-        self._features_rest = nn.Parameter(torch.tensor(features_extra, dtype=torch.float, device="cuda").transpose(1, 2).contiguous().requires_grad_(True))
+-        self._opacity = nn.Parameter(torch.tensor(opacities, dtype=torch.float, device="cuda").requires_grad_(True))
+-        self._scaling = nn.Parameter(torch.tensor(scales, dtype=torch.float, device="cuda").requires_grad_(True))
+-        self._rotation = nn.Parameter(torch.tensor(rots, dtype=torch.float, device="cuda").requires_grad_(True))
+-        self._level = torch.tensor(levels, dtype=torch.int, device="cuda")
+-        self._extra_level = torch.tensor(extra_levels, dtype=torch.float, device="cuda").squeeze(dim=1)
+-        self._gs_mask = torch.ones(self._xyz.shape[0], dtype=torch.bool, device="cuda")
+-        self.aerial_levels = round(self.aerial_levels)
+-        self.street_levels = round(self.street_levels)
+-        self.active_sh_degree = self.max_sh_degree
++        if self.max_sh_degree is None:
++            raise ValueError("explicit PLY loading requires spherical-harmonic colors")
++        layout = read_binary_float_ply(path)
++        sh_coefficients = (self.max_sh_degree + 1) ** 2
++        feature_rest_count = 3 * (sh_coefficients - 1)
++        properties = ["x", "y", "z", "level", "extra_level"]
++        properties.extend("f_dc_{}".format(index) for index in range(3))
++        properties.extend(
++            "f_rest_{}".format(index) for index in range(feature_rest_count)
++        )
++        properties.append("opacity")
++        properties.extend("scale_{}".format(index) for index in range(3))
++        properties.extend("rot_{}".format(index) for index in range(4))
++        if layout.properties != tuple(properties):
++            raise ValueError("unexpected explicit PLY property schema")
++
++        expected_info = ("standard_dist", "aerial_levels", "street_levels")
++        info = {}
++        for entry in layout.obj_info:
++            fields = entry.split()
++            if len(fields) != 2 or fields[0] in info:
++                raise ValueError("invalid explicit PLY obj_info metadata")
++            try:
++                value = float(fields[1])
++            except ValueError as exc:
++                raise ValueError("invalid explicit PLY obj_info value") from exc
++            if not math.isfinite(value):
++                raise ValueError("non-finite explicit PLY obj_info value")
++            info[fields[0]] = value
++        if tuple(info) != expected_info:
++            raise ValueError("unexpected explicit PLY obj_info schema")
++        standard_dist = info["standard_dist"]
++        aerial_levels = round(info["aerial_levels"])
++        street_levels = round(info["street_levels"])
++        if (
++            standard_dist <= 0.0
++            or aerial_levels <= 0
++            or street_levels <= 0
++            or abs(info["aerial_levels"] - aerial_levels) > 1e-6
++            or abs(info["street_levels"] - street_levels) > 1e-6
++        ):
++            raise ValueError("invalid explicit PLY LoD metadata")
++
++        vertex_count = layout.vertex_count
++        chunk_size = int(
++            os.environ.get("HORIZONGS_EXPLICIT_LOAD_CHUNK_SIZE", "262144")
++        )
++        if chunk_size <= 0:
++            raise ValueError("HORIZONGS_EXPLICIT_LOAD_CHUNK_SIZE must be positive")
++
++        xyz = features = opacity = scaling = rotation = levels = extra_levels = None
++        gs_mask = selection_mask = None
++        rows = None
++        try:
++            xyz = torch.empty((vertex_count, 3), dtype=torch.float32, device="cuda")
++            features = torch.empty(
++                (vertex_count, sh_coefficients, 3),
++                dtype=torch.float32,
++                device="cuda",
++            )
++            opacity = torch.empty((vertex_count, 1), dtype=torch.float32, device="cuda")
++            scaling = torch.empty((vertex_count, 3), dtype=torch.float32, device="cuda")
++            rotation = torch.empty((vertex_count, 4), dtype=torch.float32, device="cuda")
++            levels = torch.empty((vertex_count, 1), dtype=torch.int32, device="cuda")
++            extra_levels = torch.empty(vertex_count, dtype=torch.float32, device="cuda")
++            gs_mask = torch.ones(vertex_count, dtype=torch.bool, device="cuda")
++            selection_mask = torch.ones(vertex_count, dtype=torch.bool, device="cuda")
++
++            if vertex_count:
++                rows = np.memmap(
++                    layout.path,
++                    dtype="<f4",
++                    mode="r",
++                    offset=layout.data_offset,
++                    shape=(vertex_count, len(properties)),
++                )
++            dc_start = 5
++            rest_start = dc_start + 3
++            opacity_index = rest_start + feature_rest_count
++            scale_start = opacity_index + 1
++            rotation_start = scale_start + 3
++
++            def copy_to_cuda(destination, values, dtype=np.float32):
++                host = np.ascontiguousarray(values, dtype=dtype)
++                destination.copy_(torch.from_numpy(host))
++
++            for start in range(0, vertex_count, chunk_size):
++                end = min(start + chunk_size, vertex_count)
++                chunk = rows[start:end]
++                if not np.isfinite(chunk).all():
++                    raise ValueError("explicit PLY contains non-finite values")
++                level_values = chunk[:, 3]
++                if (
++                    np.any(level_values != np.floor(level_values))
++                    or np.any(level_values < 0)
++                    or np.any(level_values >= street_levels)
++                ):
++                    raise ValueError("explicit PLY contains invalid LoD levels")
++
++                copy_to_cuda(xyz[start:end], chunk[:, 0:3])
++                copy_to_cuda(features[start:end, 0, :], chunk[:, dc_start:rest_start])
++                if feature_rest_count:
++                    rest = chunk[:, rest_start:opacity_index]
++                    rest = rest.reshape(end - start, 3, sh_coefficients - 1)
++                    copy_to_cuda(
++                        features[start:end, 1:, :], rest.transpose(0, 2, 1)
++                    )
++                copy_to_cuda(opacity[start:end, 0], chunk[:, opacity_index])
++                copy_to_cuda(scaling[start:end], chunk[:, scale_start:rotation_start])
++                copy_to_cuda(
++                    rotation[start:end], chunk[:, rotation_start:rotation_start + 4]
++                )
++                copy_to_cuda(levels[start:end, 0], level_values, dtype=np.int32)
++                copy_to_cuda(extra_levels[start:end], chunk[:, 4])
++
++            self._xyz = nn.Parameter(xyz)
++            self._features = nn.Parameter(features)
++            self._features_dc = self._features[:, :1, :]
++            self._features_rest = self._features[:, 1:, :]
++            self._opacity = nn.Parameter(opacity)
++            self._scaling = nn.Parameter(scaling)
++            self._rotation = nn.Parameter(rotation)
++            self._level = levels
++            self._extra_level = extra_levels
++            self._gs_mask = gs_mask
++            self._selection_mask = selection_mask
++            self.standard_dist = standard_dist
++            self.aerial_levels = aerial_levels
++            self.street_levels = street_levels
++            self.active_sh_degree = self.max_sh_degree
++        except BaseException:
++            xyz = features = opacity = scaling = rotation = levels = extra_levels = None
++            gs_mask = selection_mask = None
++            torch.cuda.empty_cache()
++            raise
++        finally:
++            if rows is not None:
++                del rows
+diff --git a/utils/streaming_ply.py b/utils/streaming_ply.py
+new file mode 100644
+--- /dev/null
++++ b/utils/streaming_ply.py
+@@ -0,0 +1,98 @@
++"""Strict bounded-memory helpers for fixed-width binary float PLY files."""
++
++from __future__ import annotations
++
++import os
++from dataclasses import dataclass
++from pathlib import Path
++
++import numpy as np
++
++
++@dataclass(frozen=True)
++class BinaryFloatPly:
++    path: Path
++    vertex_count: int
++    properties: tuple[str, ...]
++    obj_info: tuple[str, ...]
++    data_offset: int
++    dtype: np.dtype
++
++    @property
++    def expected_size(self):
++        return self.data_offset + self.vertex_count * self.dtype.itemsize
++
++
++def read_binary_float_ply(path):
++    path = Path(path)
++    properties = []
++    obj_info = []
++    vertex_count = None
++    current_element = None
++    format_seen = False
++    with path.open("rb") as stream:
++        first = stream.readline()
++        if first.rstrip(b"\r\n") != b"ply":
++            raise ValueError("invalid PLY magic: {}".format(path))
++        consumed = len(first)
++        while consumed <= 2 * 1024 * 1024:
++            raw = stream.readline()
++            if not raw:
++                raise ValueError("unterminated PLY header: {}".format(path))
++            consumed += len(raw)
++            try:
++                line = raw.decode("ascii").strip()
++            except UnicodeDecodeError as exc:
++                raise ValueError("non-ASCII PLY header: {}".format(path)) from exc
++            if line == "end_header":
++                data_offset = stream.tell()
++                break
++            if not line or line.startswith("comment "):
++                continue
++            fields = line.split()
++            if fields[0] == "format":
++                if fields[1:] != ["binary_little_endian", "1.0"] or format_seen:
++                    raise ValueError("unsupported PLY format: {}".format(line))
++                format_seen = True
++            elif fields[0] == "obj_info":
++                obj_info.append(line[len("obj_info "):])
++            elif fields[0] == "element":
++                if len(fields) != 3 or fields[1] != "vertex" or vertex_count is not None:
++                    raise ValueError("only one vertex element is supported: {}".format(path))
++                vertex_count = int(fields[2])
++                if vertex_count < 0:
++                    raise ValueError("negative PLY vertex count: {}".format(path))
++                current_element = "vertex"
++            elif fields[0] == "property":
++                if (
++                    current_element != "vertex"
++                    or len(fields) != 3
++                    or fields[1] not in ("float", "float32")
++                    or fields[2] in properties
++                ):
++                    raise ValueError("unsupported PLY property: {}".format(line))
++                properties.append(fields[2])
++            else:
++                raise ValueError("unsupported PLY header line: {}".format(line))
++        else:
++            raise ValueError("PLY header exceeds size limit: {}".format(path))
++
++    if not format_seen or vertex_count is None or not properties:
++        raise ValueError("incomplete PLY header: {}".format(path))
++    dtype = np.dtype([(name, "<f4") for name in properties])
++    layout = BinaryFloatPly(
++        path=path.resolve(),
++        vertex_count=vertex_count,
++        properties=tuple(properties),
++        obj_info=tuple(obj_info),
++        data_offset=data_offset,
++        dtype=dtype,
++    )
++    if path.stat().st_size != layout.expected_size:
++        raise ValueError(
++            "PLY byte size mismatch for {}: expected {}, found {}".format(
++                path, layout.expected_size, path.stat().st_size
++            )
++        )
++    return layout
++

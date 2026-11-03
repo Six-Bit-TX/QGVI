@@ -1,0 +1,28 @@
+{
+  "id": "sf_000",
+  "scene": "sf",
+  "name": "sf_000.png",
+  "image_path": "sf-query.png",
+  "K": [
+    [
+      256.0,
+      0.0,
+      256.0
+    ],
+    [
+      0.0,
+      256.0,
+      128.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "width": 512,
+  "height": 256,
+  "excluded_reference_names": [
+    "00038_street.png"
+  ]
+}

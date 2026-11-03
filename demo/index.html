@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Queryable Gaussian View Index: retrieval, localization, and agentic view search. Explore real research examples in a browser-only demo.">
+  <meta name="theme-color" content="#f8f8f3">
+  <meta property="og:title" content="Queryable Gaussian View Index">
+  <meta property="og:description" content="Text, images, and instructions. Three interfaces to an existing 3D Gaussian scene.">
+  <meta property="og:type" content="website">
+  <title>QGVI · Queryable Gaussian View Index</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="nav-wrap">
+  <a class="brand" href="#" aria-label="QGVI home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 11V3h8M21 3h8v8M29 21v8h-8M11 29H3v-8M10 16l6-6 6 6-6 6Z"/></svg>QGVI<span class="brand-note"> / research</span></a>
+  <nav aria-label="Main navigation"><a href="#demo">Demo</a><a href="#method">Method</a><a href="#results">Results</a><a class="nav-paper" href="assets/qgvi-paper.pdf">Paper <span aria-hidden="true">↗</span></a></nav>
+</div></header>
+<main id="main">
+<section class="hero wrap">
+  <div class="hero-copy"><p class="eyebrow"><span class="tiny-cross">+</span> 3D SCENE QUERYING · 2026</p>
+    <h1>Queryable<br> Gaussian<br><span>View Index.</span></h1>
+    <p class="subtitle">Retrieval, localization,<br>and agentic view search.</p>
+    <p class="hero-description">Ask with words, locate with an image, or describe the view you want. QGVI connects your query to a camera inside an existing Gaussian scene.</p>
+    <div class="hero-actions"><a class="button primary" href="#demo">Explore the demo <span aria-hidden="true">↗</span></a><a class="button secondary" href="assets/qgvi-paper.pdf">Read the paper <span aria-hidden="true">↓</span></a></div>
+    <div class="authors">Tianyu Xiong<sup>1</sup><span> · </span>Rui Li<sup>2</sup><span> · </span>Jiaqi Yang<sup>1</sup></div>
+    <p class="affiliations"><sup>1</sup> Northwestern Polytechnical University<br><sup>2</sup> King Abdullah University of Science and Technology</p>
+  </div>
+  <div class="hero-story" aria-label="A recorded agentic view search">
+    <div class="story-top"><span class="live-dot"></span> FROM A PLACE TO A VIEW <span class="story-id">Block A / QGVI-A</span></div>
+    <figure class="source-frame"><img src="assets/hero-source.png" alt="Source street view of a glass-fronted building in Block A" width="512" height="512"><figcaption><span>01</span> Identify the place</figcaption></figure>
+    <div class="instruction"><span class="quote-mark">“</span><p>Same building. Both signs in the left third. Keep the complete recessed bay in view.</p><span class="paraphrase">Instruction paraphrase</span></div>
+    <div class="story-pair"><figure><img src="assets/hero-initial.png" alt="First cached render, with the requested framing not yet satisfied" width="512" height="512"><figcaption><span class="orange-dot"></span> Inspect the framing</figcaption></figure><span class="step-arrow" aria-hidden="true">→</span><figure><img src="assets/hero-final.png" alt="Final cached render after camera exploration" width="512" height="512"><figcaption><span class="green-dot"></span> Return the view</figcaption></figure></div>
+    <p class="story-note">Selected observations from a recorded run. Predicate checks are model assessments.</p>
+  </div>
+</section>
+<section class="routes wrap" aria-label="Three query routes">
+  <article class="route t"><span class="route-num">01 / TEXT</span><h2>Find a matching view.</h2><p>Search captions attached to known cameras. Return candidate views and their stored poses.</p><span class="route-tag">QGVI-T · BM25 retrieval</span></article>
+  <article class="route i"><span class="route-num">02 / IMAGE</span><h2>Locate, or decline.</h2><p>Match an image to the scene. Accept the geometric pose only when enough distinct keypoints support it.</p><span class="route-tag">QGVI-I · geometric localization + gate</span></article>
+  <article class="route a"><span class="route-num">03 / IMAGE + INSTRUCTION</span><h2>Search for a new view.</h2><p>Use retrieval and localization tools, inspect renders, and update the camera to satisfy a requested view.</p><span class="route-tag">QGVI-A · adaptive view search</span></article>
+</section>
+<section class="demo-section" id="demo"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">EXPLORE / 01</p><h2>A small window into the scene.</h2></div><p>Live caption search and recorded examples.<br>Everything here runs in your browser.</p></div>
+  <div class="demo-shell">
+    <div class="demo-toolbar"><div class="tabs" role="tablist" aria-label="Demo route"><button role="tab" id="tab-text" aria-selected="true" aria-controls="panel-text" data-tab="text">Text search</button><button role="tab" id="tab-rgb" aria-selected="false" tabindex="-1" aria-controls="panel-rgb" data-tab="rgb">RGB replay</button><button role="tab" id="tab-agent" aria-selected="false" tabindex="-1" aria-controls="panel-agent" data-tab="agent">Agentic replay</button></div><span class="browser-badge">NO GPU · NO API</span></div>
+    <p id="load-status" class="load-status" role="status">Loading the selected demo views…</p>
+    <div id="panel-text" role="tabpanel" aria-labelledby="tab-text" class="demo-panel">
+      <div class="demo-intro"><span class="mode-badge">LIVE · BROWSER SEARCH</span><p id="index-scope">BM25 searches a small, selected caption index. These examples are not the full evaluation database.</p></div>
+      <form id="search-form" class="search-form"><div class="search-field"><label for="query">Describe a view</label><input id="query" type="search" placeholder="Try a red building, a road, or a glass facade…" maxlength="500" autocomplete="off"></div><div class="scene-field"><label for="scene">Scene</label><select id="scene"><option value="all">All scenes</option></select></div><button class="button primary" type="submit">Search <span aria-hidden="true">↗</span></button></form>
+      <div class="query-presets" id="query-presets" aria-label="Example queries"></div>
+      <div class="results-heading"><p id="search-status" role="status" aria-live="polite"></p><span>Caption relevance ≠ verified success</span></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <div id="panel-rgb" role="tabpanel" aria-labelledby="tab-rgb" class="demo-panel" hidden>
+      <div class="demo-intro"><span class="mode-badge orange">RECORDED · GEOMETRIC LOCALIZATION</span><p>Choose a saved query to inspect its evidence and acceptance decision. This page does not localize newly uploaded images.</p></div>
+      <div id="rgb-choices" class="query-presets" aria-label="Recorded image queries"></div>
+      <div id="rgb-content"></div>
+    </div>
+    <div id="panel-agent" role="tabpanel" aria-labelledby="tab-agent" class="demo-panel" hidden>
+      <div class="demo-intro"><span class="mode-badge purple">RECORDED · AGENT TRACE</span><p>Step through the actual saved tool calls and observations. Playback does not run a model or render new images.</p></div>
+      <div class="agent-request"><img id="agent-source" alt="Source image for the recorded target-view request"><div><span class="field-label">IMAGE + INSTRUCTION</span><p id="agent-instruction"></p><details><summary>Requested predicates</summary><ul id="agent-predicates"></ul></details></div></div>
+      <div class="agent-player"><div class="agent-screen"><img id="agent-frame" alt="Selected recorded agent observation"><span id="agent-frame-label" class="frame-label"></span></div><div class="agent-step-info"><div class="step-heading"><span id="agent-step-count" class="field-label"></span><span class="route-tag purple-text">QGVI-A</span></div><h3 id="agent-step-title"></h3><p id="agent-step-summary"></p><div id="agent-checks"></div><div class="player-controls"><button id="agent-prev" class="button secondary" aria-label="Previous recorded step">← Previous</button><button id="agent-next" class="button primary" aria-label="Next recorded step">Next →</button></div><div id="agent-timeline" class="agent-timeline" aria-label="Recorded steps"></div><button id="agent-pose" class="text-button">Download final camera JSON ↓</button></div></div>
+      <p id="agent-scope" class="small-note"></p>
+    </div>
+  </div>
+  <p class="section-footnote">The demo uses selected cached assets. Browser search is real; localization and camera exploration are replays. The research pipeline uses models and rendering hardware.</p>
+</div></section>
+<section class="wrap method-section" id="method">
+  <div class="section-heading"><div><p class="eyebrow">METHOD / 02</p><h2>One asset. Three interfaces.</h2></div><p>Views and cameras provide a common interface for search, geometric evidence, and exploration.</p></div>
+  <figure class="pipeline"><a href="assets/pipeline.png" target="_blank" rel="noopener" aria-label="Open the full-resolution pipeline figure"><img src="assets/pipeline.png" alt="QGVI pipeline: BM25 caption retrieval, NetVLAD and SuperPoint/SuperGlue geometric localization with a distinct-keypoint gate, and a controller that calls tools, inspects renders, and updates the camera." loading="lazy"></a><figcaption>Current pipeline from the paper. Photometric refinement is an optional ablation; the default image route keeps the geometric estimate. <a href="assets/pipeline.png" target="_blank" rel="noopener">Enlarge ↗</a></figcaption></figure>
+  <div class="method-notes"><div><h3>A pose attached to every view</h3><p>The text interface ranks captions associated with calibrated observations. It returns stored camera poses rather than claiming unique source-camera recovery from ambiguous language.</p></div><div><h3>Evidence before acceptance</h3><p>The image interface adds a fixed distinct-keypoint gate to the LoGS geometric initializer. An accepted camera stays unchanged; unsupported estimates are rejected.</p></div><div><h3>Stop when the answer is supported</h3><p>The agent can exit after a direct answer, or continue with tool calls and camera exploration. Its budget also allows an insufficient-evidence outcome.</p></div></div>
+</section>
+<section class="results-section" id="results"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">EVIDENCE / 03</p><h2>What the experiments show.</h2></div><p>Nine development scenes.<br>Three tasks, with distinct correctness criteria.</p></div>
+  <div class="result-grid"><article><span class="route-num">IMAGE + INSTRUCTION · 250 QUERIES</span><strong>90.4<span>%</span></strong><h3>Confirmed correct returns</h3><p>QGVI-A finds a model-assessed valid target view on 226 of 250 queries. One additional returned view is uncertain.</p></article><article><span class="route-num">RGB · 3,678 QUERIES</span><strong>96.94<span>%</span></strong><h3>Precision among accepted results</h3><p>QGVI-I on a cohort with 1,839 in-map and 1,839 out-of-map queries. Correctness uses 1 m / 2°; five scene scales are estimated.</p></article><article><span class="route-num">TEXT · 180 QUERIES</span><strong>90.8–93.9<span>%</span></strong><h3>Answer precision with QGVI-A</h3><p>At 72.8% coverage under common GPT assessment. Uncertainty remains explicit rather than being counted as success.</p></article></div>
+  <div class="comparison"><div><h3>Target-view search</h3><p>The same 250 image-and-instruction queries. Compare whole policies: available information and decision budgets differ.</p></div><div class="table-scroll"><table><caption class="sr-only">Matched target-view comparison under common GPT assessment</caption><thead><tr><th scope="col">Method</th><th scope="col">Correct returns ↑</th><th scope="col">Answer precision ↑</th><th scope="col">Coverage</th></tr></thead><tbody><tr><th scope="row">Retrieve + Select</th><td>26.8%</td><td><strong>98.53%</strong></td><td>27.2%</td></tr><tr><th scope="row">Fixed Search + Verify</th><td>17.6–18.0%</td><td>88.0–90.0%</td><td>20.0%</td></tr><tr class="ours"><th scope="row">QGVI-A</th><td><strong>90.4–90.8%</strong></td><td>92.62–93.03%</td><td>97.6%</td></tr></tbody></table></div></div>
+  <details class="reading-note"><summary>How to read these numbers</summary><p>Text and target-view correctness is model-assessed. Intervals express unresolved judgments, not confidence intervals. RGB correctness uses geometric errors; five scenes use DA3-estimated metric scales. These are development cohorts, and percentages across different tasks are not directly comparable. Grid-view augmentation did not establish a consistent retrieval benefit; photometric refinement did not improve threshold success and worsened median pose errors on this cohort. See the paper for protocols, rejection metrics, and limitations.</p></details>
+</div></section>
+<section class="wrap paper-section" id="paper"><div><p class="eyebrow">READ / 04</p><h2>The full story.</h2><p>Methods, all nine scenes, matched controls,<br>and the limitations behind the headline results.</p><a class="button primary" href="assets/qgvi-paper.pdf">Open preprint · 28 pages ↗</a><p class="small-note">Updated 3 November 2026 · Includes supplementary material</p></div><div class="citation"><div><h3>Cite this work</h3><button class="text-button" id="copy-citation">Copy BibTeX</button></div><pre id="citation">@misc{xiong2026qgvi,
+  title = {Queryable Gaussian View Index:
+    Retrieval, Localization, and Agentic View Search},
+  author = {Xiong, Tianyu and Li, Rui and Yang, Jiaqi},
+  year = {2026},
+  note = {Preprint}
+}</pre><p id="copy-status" role="status" aria-live="polite"></p></div></section>
+</main>
+<footer class="wrap"><a class="brand" href="#">QGVI <span class="brand-note">/ Queryable Gaussian View Index</span></a><div><a href="https://github.com/Six-Bit-TX/qgvi-project">Website source ↗</a><a href="assets/credits.txt">Data &amp; image credits</a><span>Built for the browser.</span></div></footer>
+<dialog id="view-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close view details">×</button><img id="dialog-image" alt=""><div class="dialog-body"><span class="field-label" id="dialog-scene"></span><h2 id="dialog-title">Retrieved view</h2><p id="dialog-caption"></p><p class="small-note">This is a stored reference camera, not a newly estimated pose. Caption relevance is not an independent verification of the query.</p><button id="dialog-download" class="button primary">Download stored camera JSON ↓</button></div></dialog>
+<noscript><p class="wrap">JavaScript is required for the interactive demo. The paper, method figure, and results are available without it.</p></noscript>
+</body></html>

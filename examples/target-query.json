@@ -1,0 +1,17 @@
+{
+  "id": "sf_text_demo",
+  "scene": "sf",
+  "instruction": "Find a street-level view with a road and buildings on both sides.",
+  "output_type": "target_view",
+  "source_image": null,
+  "predicates": [
+    {
+      "id": "P1",
+      "text": "A road is visible."
+    },
+    {
+      "id": "P2",
+      "text": "Buildings are visible on both sides of the road."
+    }
+  ]
+}

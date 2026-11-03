@@ -1,0 +1,565 @@
+{
+  "scope": "The ten actual retrieved references for the included SF source-image example; not the complete SF image gallery",
+  "views": [
+    {
+      "id": "sf:street:training:cd06bfd8cd236c8c55df",
+      "scene": "sf",
+      "reference_name": "00030_street.png",
+      "image_path": "sf-gallery/00030_street.png",
+      "image_sha256": "a975270a107c9e5a3c2af2956a83079cae9fb5e4fd9642d65e902f2acbe90958",
+      "caption": "A wide, empty multi-lane city street recedes toward a cluster of tall buildings under a clear blue sky. A large brick building with rows of dark windows lines the left side behind an orange construction barrier and green fencing, while a modern gray building with a glass canopy and blue mailboxes occupies the right foreground. Trees stand along both sidewalks, and lane markings run down the center of the asphalt.\nObjects: street; lane markings; brick building; windows; orange construction barrier; green fencing; trees; sidewalk; modern gray building; glass canopy; blue mailboxes; distant skyscrapers; traffic light; sky\nAttributes: street is wide and gray asphalt; lane markings are white dashed lines; brick building is tall, brown, with many dark rectangular windows; orange barrier is low and continuous along the left curb; green fencing is mesh-like behind the orange barrier; trees have green foliage; modern building is gray with a dark glass canopy; mailboxes are blue and box-shaped; sky is clear blue; distant buildings include a blue glass tower\nRelations: brick building is on the left side of the street; orange barrier runs along the left curb in front of the brick building; trees are between the barrier and the street on the left; modern gray building is on the right side of the street; glass canopy projects from the right building over the sidewalk; blue mailboxes are on the right sidewalk near the canopy; distant skyscrapers are centered at the far end of the street; lane markings run down the middle of the street toward the background",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -16.33734703063965
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -4.239710441892375e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:4eb226b2a5ca877a4016",
+      "scene": "sf",
+      "reference_name": "00037_street.png",
+      "image_path": "sf-gallery/00037_street.png",
+      "image_sha256": "c349a27b0ffd52853e6d31a9c3b3c58821759a35803a0a7f486e20357fdf2f2f",
+      "caption": "A wide, empty multi-lane city street receding toward a cluster of tall buildings under a clear blue sky, with a brick building and trees on the left and a modern building with a glass canopy on the right.\nObjects: street; lane markings; brick building; trees; green construction fence; orange barriers; modern building; glass canopy; parking meter; trash receptacle; distant skyscrapers; streetlight pole; curb; sidewalk\nAttributes: street is gray asphalt and mostly empty; lane markings are white dashed lines; brick building is tall, brown, and has many dark windows; trees are green and leafy; construction fence is dark green; barriers are orange and low; modern building is light gray with dark windows; glass canopy is angled and supported by a metal frame; parking meter is dark and stands near the curb; trash receptacle is dark and boxy; distant skyscrapers are blue-gray and varied in height; streetlight pole is tall and slender; curb is light gray and curved; sidewalk is light gray concrete\nRelations: brick building is on the left side of the street; trees are in front of the brick building and along the left sidewalk; green construction fence and orange barriers run along the left edge of the street; modern building with glass canopy is on the right side of the street; parking meter and trash receptacle are on the right sidewalk near the curb; distant skyscrapers are in the background at the end of the street; streetlight pole stands on the left sidewalk near the trees; lane markings run down the center of the street toward the background",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -20.963939666748047
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -4.85372209892095e-09
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:22e5d7f6036eff50aa5c",
+      "scene": "sf",
+      "reference_name": "00029_street.png",
+      "image_path": "sf-gallery/00029_street.png",
+      "image_sha256": "a7c5109f87d8d57f9328f39b0e2145c568dd05238b63414343c7b2e5644489ea",
+      "caption": "A wide, empty multi-lane city street recedes toward a distant cluster of tall buildings under a clear blue sky. A large brick building with rows of dark windows lines the left side behind an orange barrier and green fencing, while a modern glass-and-stone building with a small canopy structure occupies the right foreground. Trees stand along both sidewalks, and white lane markings run down the center of the gray asphalt road.\nObjects: road; lane markings; brick building; windows; orange barrier; green fence; trees; glass building; stone building; canopy structure; sidewalk; distant skyscrapers; sky; utility box; signs\nAttributes: road is gray asphalt and empty; lane markings are white dashed lines; brick building is tall reddish-brown with many dark rectangular windows; orange barrier is low and continuous along the left curb; green fence is behind the orange barrier; trees are leafy green; glass building has blue-tinted reflective panels; stone building has gray block cladding; canopy structure has a slanted blue-gray roof; sky is clear blue; utility box is dark blue; signs are small and mounted near the right sidewalk\nRelations: brick building is on the left side of the street; orange barrier and green fence run along the left curb in front of the brick building; trees are positioned along both sidewalks; glass-and-stone building is on the right side of the street; canopy structure projects from the right building near the foreground; utility box and signs are on the right sidewalk beneath the canopy area; distant skyscrapers are centered in the background at the end of the street; lane markings run down the middle of the road toward the background",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -15.759153366088867
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -5.03610060855412e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:f5435f09a6796b57fb7c",
+      "scene": "sf",
+      "reference_name": "00018_street.png",
+      "image_path": "sf-gallery/00018_street.png",
+      "image_sha256": "3747f5afb977845b36b589ac30cc2e4456b5858084e9fb31dbb922335f6abaad",
+      "caption": "A wide, empty multi-lane city street recedes toward a distant cluster of tall buildings under a clear blue sky. A large brown brick building with a grid of dark windows dominates the left side, while a darker modern building with a small white kiosk-like structure stands on the right. Trees line both sidewalks, and a red barrier runs along the left curb.\nObjects: street; lane markings; sidewalk; brown brick building; dark modern building; white kiosk structure; trees; red barrier; distant skyscrapers; traffic sign; sky; shadows\nAttributes: street is wide and gray with white dashed lane lines; brown building has a regular grid of dark rectangular windows; right building is dark gray/blue with large glass panels; kiosk has a white pyramidal roof; trees are green and leafy; barrier is red and low; sky is clear blue; shadows fall across the right side of the street\nRelations: brown brick building is on the left side of the street; dark modern building is on the right side of the street; white kiosk is in front of the dark building on the right; trees are along both sidewalks; red barrier runs along the left curb in front of the brown building; distant skyscrapers are at the far end of the street; shadows from trees and buildings fall across the right lane",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -8.273263931274414
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -4.6588075558847934e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:ae1c262182419c226a9d",
+      "scene": "sf",
+      "reference_name": "00023_street.png",
+      "image_path": "sf-gallery/00023_street.png",
+      "image_sha256": "853859ef9b18b8bfb74be1bd319038bf1a636354a81cbc632687d9ed25066f3e",
+      "caption": "A wide, empty multi-lane city street recedes toward a distant cluster of tall buildings under a clear blue sky. A large brick building with rows of dark windows dominates the left side, fronted by a red barrier and green fencing, while a modern gray building with a small kiosk-like structure and trees lines the right side.\nObjects: street; lane markings; brick building; windows; red barrier; green fence; trees; modern gray building; kiosk-like structure; distant skyscrapers; sky; sidewalk; utility pole; sign\nAttributes: street is wide and gray with white dashed lane lines; brick building is tall, brown, and has many dark rectangular windows; red barrier is low and slatted along the left curb; green fence is dark and runs behind the red barrier; trees are green and leafy; modern building is gray with large dark windows; kiosk-like structure has a slanted roof and dark panels; sky is clear and blue; lane markings are white and dashed\nRelations: brick building is on the left side of the street; red barrier and green fence are in front of the brick building; trees are between the brick building and the street; modern gray building is on the right side of the street; kiosk-like structure is on the right sidewalk; distant skyscrapers are in the background at the end of the street; trees line both sides of the street in the distance",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -11.716408729553224
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -9.942832430356125e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:f69ebf56bf7aa6cb568f",
+      "scene": "sf",
+      "reference_name": "00036_street.png",
+      "image_path": "sf-gallery/00036_street.png",
+      "image_sha256": "2a52a51c4f1c26c2e336ceb46bdb5d915311998ce785e9e72e07a72c5aca83f3",
+      "caption": "A wide, empty urban street stretches toward a distant cluster of tall buildings under a clear blue sky. On the left, a large brown brick building with rows of dark windows stands behind a row of leafy green trees and an orange construction barrier. On the right, a modern gray building with a glass canopy entrance and a dark sign near the curb lines the sidewalk. Dashed white lane markings run down the center of the gray asphalt road, and a solid white line and arrow marking appear in the lower right foreground.\nObjects: brown brick building; rows of dark windows; green trees; orange construction barrier; gray asphalt road; dashed white lane markings; solid white line; white arrow marking; modern gray building; glass canopy entrance; dark sign near curb; distant tall buildings; clear blue sky; sidewalk\nAttributes: brown brick building is tall and multi-story; windows are dark and arranged in rows; trees are leafy and green; construction barrier is orange and low; road is gray asphalt and empty; lane markings are white and dashed; arrow marking is white and points forward; modern building is gray with a glass canopy; sky is clear and blue; distant buildings are tall and varied in color\nRelations: trees are in front of the brown brick building on the left; orange barrier runs along the left side of the road; dashed lane markings run down the center of the road; glass canopy is attached to the modern gray building on the right; dark sign is on the sidewalk near the right curb; distant tall buildings are in the background at the end of the street; arrow marking is in the lower right foreground on the road",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -19.807313919067383
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -8.768287472246357e-09
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:6267e1880808fa7ac2a1",
+      "scene": "sf",
+      "reference_name": "00024_street.png",
+      "image_path": "sf-gallery/00024_street.png",
+      "image_sha256": "390bc7fc37412dd80b55558454c4353bf9eb7505394cf003702422ae04c34e5c",
+      "caption": "A wide, empty multi-lane city street recedes toward a distant cluster of tall buildings under a clear blue sky. A large brick building with many dark windows lines the left side behind an orange barrier and green fencing, while a modern gray building with a small kiosk and trees occupies the right side.\nObjects: street; lane markings; brick building; windows; orange barrier; green fence; trees; modern gray building; kiosk; distant skyscrapers; sky; sidewalk; street sign\nAttributes: street is wide and gray with white dashed lane lines; brick building is tall, brown, and has a grid of dark rectangular windows; orange barrier is low and continuous along the left curb; green fence sits behind the orange barrier; trees are leafy and green; modern building is gray with large dark glass panels; kiosk has a slanted roof and dark panels; sky is clear and blue; distant skyscrapers are varied in height and color\nRelations: brick building is on the left side of the street; orange barrier and green fence run along the left curb in front of the brick building; trees are positioned between the left building and the street; modern gray building is on the right side of the street; kiosk stands on the right sidewalk near the modern building; distant skyscrapers are centered at the far end of the street; lane markings run down the center of the street toward the horizon",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -12.293085098266602
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -9.958643414507471e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:e11bb636c31a2997410c",
+      "scene": "sf",
+      "reference_name": "00022_street.png",
+      "image_path": "sf-gallery/00022_street.png",
+      "image_sha256": "fcdac4161046da1a623c0afa6161e6eda3952a24b388597ee6ba7d21ef6ee237",
+      "caption": "A wide, empty multi-lane city street recedes toward a distant cluster of tall buildings under a clear blue sky. A large brick building with a grid of dark windows dominates the left side, fronted by a row of orange barriers and green trees. On the right, a modern gray building with dark horizontal window bands stands beside a sidewalk shelter with a slanted roof and a dark sign panel. White dashed lane markings run along the asphalt, and shadows fall across the right foreground.\nObjects: asphalt road; white lane markings; brick building; dark windows; orange barriers; green trees; modern gray building; sidewalk shelter; dark sign panel; distant skyscrapers; blue sky; sidewalk; street sign; shadow\nAttributes: road is wide and mostly empty; lane markings are white and dashed; brick building is tall with a regular grid of dark windows; barriers are orange and low; trees are green and leafy; gray building has dark horizontal window bands; shelter roof is slanted and light-colored; sky is clear blue; shadows are dark and cast across the right foreground\nRelations: brick building is on the left side of the street; orange barriers run along the left edge of the road in front of the brick building; trees stand between the brick building and the road; gray building is on the right side of the street; shelter is on the right sidewalk beside the gray building; distant skyscrapers are centered at the far end of the street; lane markings run lengthwise down the road; shadows fall across the right foreground sidewalk and road edge",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -11.140247344970703
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -9.476408743486268e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:2b12c18fb4421b790a98",
+      "scene": "sf",
+      "reference_name": "00019_street.png",
+      "image_path": "sf-gallery/00019_street.png",
+      "image_sha256": "78aebfe1356333b0b51d6147a87f52973eff10e0c937997217c48c7fbdaa6f20",
+      "caption": "A wide, empty multi-lane city street recedes toward a distant cluster of tall buildings under a clear blue sky. A large brick building with dark rectangular windows lines the left side, with orange barriers and green trees along its base. On the right, a modern gray building with dark windows stands beside a small kiosk-like structure with a peaked roof, and trees cast shadows onto the road and sidewalk.\nObjects: street; lane markings; brick building; modern gray building; trees; orange barriers; kiosk structure; distant skyscrapers; sidewalk; sky; shadows\nAttributes: street is wide and gray with white dashed lane lines; brick building is tall, brown, with rows of dark rectangular windows; modern building is gray with dark glass windows; trees are green and leafy; barriers are orange and low; kiosk has a peaked roof and light-colored walls; sky is clear blue; shadows are dark and cast across the right side of the road\nRelations: brick building is on the left side of the street; orange barriers run along the base of the brick building; trees are between the brick building and the street; modern gray building is on the right side of the street; kiosk structure is in front of the modern gray building; distant skyscrapers are in the background at the end of the street; shadows fall across the right lane and sidewalk",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -9.416373252868652
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -6.609027071916057e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    },
+    {
+      "id": "sf:street:training:3562ae003cf0d8796b9c",
+      "scene": "sf",
+      "reference_name": "00031_street.png",
+      "image_path": "sf-gallery/00031_street.png",
+      "image_sha256": "e287d1606911e8940b6e8b7fc554fabec4bb99c4d19a98d1eac243e4813030e4",
+      "caption": "A wide, empty multi-lane city street recedes toward a distant cluster of tall buildings under a clear blue sky. A large brick building lines the left side behind an orange barrier and green fencing, while a modern gray building with a small canopy structure occupies the right foreground. Trees stand along both sidewalks, and dashed white lane markings run down the center of the asphalt.\nObjects: street; lane markings; brick building; windows; orange barrier; green fence; trees; sidewalk; modern gray building; canopy structure; mailboxes or utility boxes; distant skyscrapers; sky; curb\nAttributes: street is wide and gray asphalt; lane markings are white and dashed; brick building is tall, brown, with many dark rectangular windows; orange barrier is low and segmented; green fence is dark and runs along the left sidewalk; trees are green and leafy; sidewalk is gray concrete; modern building is gray with large glass panels; canopy structure is angular and light-colored; distant skyscrapers are varied in height and color; sky is clear blue\nRelations: brick building is on the left side of the street; orange barrier and green fence are in front of the brick building; trees are along the left sidewalk behind the barrier; modern gray building is on the right side of the street; canopy structure is attached to the right building near the foreground; mailboxes or utility boxes are on the right sidewalk near the curb; distant skyscrapers are in the background at the end of the street; lane markings run down the center of the street",
+      "frame": {
+        "c2w": [
+          [
+            2.220446049250312e-16,
+            -0.0,
+            -0.9999999999999998,
+            -16.915605545043945
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -1.8000000000000005
+          ],
+          [
+            0.9999999999999998,
+            0.0,
+            2.220446049250312e-16,
+            -3.4972835091105926e-08
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "K": [
+          [
+            256.0,
+            0.0,
+            256.0
+          ],
+          [
+            0.0,
+            256.0,
+            128.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "width": 512,
+        "height": 256,
+        "domain": "street"
+      }
+    }
+  ]
+}

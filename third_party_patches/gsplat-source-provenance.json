@@ -1,0 +1,628 @@
+{
+  "repository": "https://github.com/nerfstudio-project/gsplat",
+  "commit": "2323de5905d5e90e035f792fe65bad0fedd413e7",
+  "version": "1.5.3",
+  "commit_evidence": "GitHub ZIP archive comment",
+  "archive_sha256": "91f89fa4ed355e54c198e9c24714e160cb497846a017d974293b4db41aa82747",
+  "archive_files_match_installed_editable_source": true,
+  "local_source_changes": [],
+  "source_files": [
+    {
+      "path": ".clang-format",
+      "sha256": "cd6b7be89bd82de56b73e2bdd1ae066c6b6032efa96940c07bdcaa9a5e9771f2"
+    },
+    {
+      "path": ".clangd_template",
+      "sha256": "e0dd859d2ebbc7da0610179b5bec5bd720d855159cfad29f434d988f41a5e9ce"
+    },
+    {
+      "path": ".github/workflows/building.yml",
+      "sha256": "1391aadad4389ea0cc90c26b1058d47b10f571aa79b3cbecf31a0b235544f9ce"
+    },
+    {
+      "path": ".github/workflows/core_tests.yml",
+      "sha256": "35cc03a6e00a47e844a3a4f6e22640b13b1ba6b595d2c100c4d00e3d260ca376"
+    },
+    {
+      "path": ".github/workflows/cuda/Linux-env.sh",
+      "sha256": "cfeb6f14fe85bcef4a8f019a9b3dc2d12b907d48aae233e5118886bc95faab3f"
+    },
+    {
+      "path": ".github/workflows/cuda/Linux.sh",
+      "sha256": "3a23e5b15ac18639ce1938dc52dae269eb043f2e85686731c194fc0eccbac0a6"
+    },
+    {
+      "path": ".github/workflows/cuda/Windows-env.sh",
+      "sha256": "85a0793bdca53732c80dd9ebc764ff933fa5337b29fa7adea6e55039b1dc92c5"
+    },
+    {
+      "path": ".github/workflows/cuda/Windows.sh",
+      "sha256": "6057e2235c965eedd91f090a844a2d398c7da2c711bd25d33fef2c960e5f7397"
+    },
+    {
+      "path": ".github/workflows/doc.yml",
+      "sha256": "b2ee7188b686d1a7af8c51369bc92431b4e0abaa468f9dafb201da65e0c64e9d"
+    },
+    {
+      "path": ".github/workflows/generate_simple_index_pages.py",
+      "sha256": "c03789fae8340e8b48acd4a54c0cb6295354ac03aa4beccf751ea52f8006a120"
+    },
+    {
+      "path": ".github/workflows/generate_simple_index_pages.yml",
+      "sha256": "dd2f23d6e6f0f7c0135375831e7462ba15666c61f97aa87d2dcc08c657b80003"
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "sha256": "1f3cfcb84a1b56977ff9a714b74a28113be7e724ad8032d25bde0deda786d9cd"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "00262740fce6b389df29e420cff773ad14af4b35b020821087ee84334fd8094e"
+    },
+    {
+      "path": ".gitmodules",
+      "sha256": "1ff4ed54a84c2188505398ceb56c20d5160f95ca3225e58d9c15db8ef709fb32"
+    },
+    {
+      "path": "CITATION.bib",
+      "sha256": "b681c48c1e6767ca4d2ec6668c78f98fd563d1d364194cc98d6979d0f61648e3"
+    },
+    {
+      "path": "EXPLORATION.md",
+      "sha256": "90289c9d64512acdf254375f9cb379bd284bdb99ee4db165d9710c274ac05e3a"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "96a4f89293c0df19880da9b0e35f67589f5885ea61b224ef16bb2bd599a8a44d"
+    },
+    {
+      "path": "MANIFEST.in",
+      "sha256": "b5f3970851e2e5d19e00683307f7d9c40098a4ce413d187f6debf771aba6681c"
+    },
+    {
+      "path": "README.md",
+      "sha256": "51862e9956edbdc7233fe3db514a5b8601c4732658862894f8d5a1595ce90275"
+    },
+    {
+      "path": "assets/test_garden.npz",
+      "sha256": "42c57b63008be60122aba506dc8458cc59b0a8655b38dd78e7cfb720da3b132a"
+    },
+    {
+      "path": "docs/3dgut.md",
+      "sha256": "4ef7564f68a60dcbb344f01e17140f3de0abea37068cadb92457054b37e1843d"
+    },
+    {
+      "path": "docs/DEV.md",
+      "sha256": "ebd93a521fa96fa0a52625e78f308af7a2beb3040741ffd10cd2413750f0e421"
+    },
+    {
+      "path": "docs/INSTALL_WIN.md",
+      "sha256": "9a12a8e31f3402e8fb64863bb8f9ef68d00a666c9f5f5eb3524ef76b24e8f45c"
+    },
+    {
+      "path": "docs/Makefile",
+      "sha256": "b7bbc4b8a57e8ee3289f776aa0ed178c3e728270055d0a55e8e5a0373743a564"
+    },
+    {
+      "path": "docs/batch.md",
+      "sha256": "b6136cae0a8bf1b900bc0cac78961b0f6b68e7d5d4d13c45c1abcb9dfbd877ab"
+    },
+    {
+      "path": "docs/requirements.txt",
+      "sha256": "cbd8ea6e4773938c7721370b5e103353ca607887bbc4c007c2a86cc6877644c8"
+    },
+    {
+      "path": "docs/source/_templates/sidebar/brand.html",
+      "sha256": "e5c7d7b3510cf312612db6a6d86f69f58f71c8bd564b755d4bdf3ccdd32044e4"
+    },
+    {
+      "path": "docs/source/apis/compression.rst",
+      "sha256": "4018fb687455ca07833f6411c75c4688ee8882e78674d226c97ff18a093e397d"
+    },
+    {
+      "path": "docs/source/apis/rasterization.rst",
+      "sha256": "06aec7dec7ad15e66801364e1d7220c9e12a5fdae11a82181f392cac5f321d9b"
+    },
+    {
+      "path": "docs/source/apis/strategy.rst",
+      "sha256": "18c854689a249e4386bf326d0fd89df8a03bcb073d1eb8dd0c0cdc3f3e345eb7"
+    },
+    {
+      "path": "docs/source/apis/utils.rst",
+      "sha256": "5efe495b6d3383294dd24b38270729f402bc1509383ce848806c030afd3cf42a"
+    },
+    {
+      "path": "docs/source/assets/square.gif",
+      "sha256": "4b956296d3a246614f4438e34104a7741688c18b506451b86282cc771aad441b"
+    },
+    {
+      "path": "docs/source/assets/training.gif",
+      "sha256": "11a73f6d89aec2dd5d5a508550e7d63e9028dff435fe4b57f061b8132ebd22e3"
+    },
+    {
+      "path": "docs/source/assets/viewer_garden_480p.mp4",
+      "sha256": "60ea5365f33faabef9152a29afb0a038ef2d279be10c9b6eeb9a379836ba9883"
+    },
+    {
+      "path": "docs/source/conf.py",
+      "sha256": "73b32b741767237196f3a2f4b5297f3e9745a2606647d6a4961ab3861fcd2b24"
+    },
+    {
+      "path": "docs/source/conventions/data_conventions.rst",
+      "sha256": "53fa7991803bd3f5f2f9ce7b706117da89a8d9b367289dc9ddced5e9f1ba72d0"
+    },
+    {
+      "path": "docs/source/examples/colmap.rst",
+      "sha256": "3cce1d9f28d0f4bcef870042a2283f8669a64b5e8d94215a2b7c8310e735c3ca"
+    },
+    {
+      "path": "docs/source/examples/image.rst",
+      "sha256": "d9d5691830f5246fc43de98fd8ff04b982603d4dac8285a7c19cd4bdb013b643"
+    },
+    {
+      "path": "docs/source/examples/large_scale.rst",
+      "sha256": "e8fe5fc6c93c924dc5b93b33d8d4457dad9b5334f7464fd8c4bb9e46760939bd"
+    },
+    {
+      "path": "docs/source/index.rst",
+      "sha256": "38ed2105ba9760c7fadf426d15a8f44bb35de658f4efb9500ccbe072772ed7cb"
+    },
+    {
+      "path": "docs/source/migration/migration_inria.rst",
+      "sha256": "c08ec24eccae9fe43430d7fa34d6414e3c611544829230aadfec8b87a94782d9"
+    },
+    {
+      "path": "docs/source/migration/migration_legacy.rst",
+      "sha256": "82b13147cd42c26119c8bc55451b900b21c53d39f4195b62c115ec10079c3d02"
+    },
+    {
+      "path": "docs/source/references.bib",
+      "sha256": "38ae679bb4b8ed6d2d81bda313c185f614434bede8605352c45ea1ac90abc796"
+    },
+    {
+      "path": "docs/source/tests/eval.rst",
+      "sha256": "7fce2589653f65132745721228e85f283f34a5b5fa0055239ae7bdb019887ffe"
+    },
+    {
+      "path": "docs/source/tests/profile.rst",
+      "sha256": "d910f8c44de41c0cdbbc59683a884b33f3a20044df0333a0aade067bbc278f0b"
+    },
+    {
+      "path": "docs/source/tests/tests.rst",
+      "sha256": "8f02e86bff0f99cbd344a09108c01b8940d4fd875b2bdd4c63720478ad67d8ec"
+    },
+    {
+      "path": "examples/benchmarks/3dgut/mcmc.sh",
+      "sha256": "c37f6360589594b97d4ab34320ece4ebf00bbe083cf9e5e6df8b5c2081b268d5"
+    },
+    {
+      "path": "examples/benchmarks/3dgut/mcmc_zipnerf.sh",
+      "sha256": "c30e737c1086ad1a33e733a1d3d548df3e40d8c10aa5dc52d082e5634a7936cd"
+    },
+    {
+      "path": "examples/benchmarks/basic.sh",
+      "sha256": "9f94f490f726e0202094afa412e725cb24daad5e8aaceb51d47ab5ac96defeed"
+    },
+    {
+      "path": "examples/benchmarks/basic_2dgs.sh",
+      "sha256": "0ae14131f1a35f218948862acf002224192fbaedb8701a6c33aac0a76595a69b"
+    },
+    {
+      "path": "examples/benchmarks/basic_4gpus.sh",
+      "sha256": "4ea7d2aca9d0abc4aff8712baa803c58b6fb92654f1b8a52541d133c0ce04172"
+    },
+    {
+      "path": "examples/benchmarks/bilarf/mcmc_bilarf.sh",
+      "sha256": "83478f52eb978e4d92220809cf149b7538e7e53c8f1808a8ba5f1597c9a65ca6"
+    },
+    {
+      "path": "examples/benchmarks/compression/mcmc.sh",
+      "sha256": "d75374740813af264f0358963e8c2f1703d8609a7f6abace10301d309b8f8846"
+    },
+    {
+      "path": "examples/benchmarks/compression/mcmc_tt.sh",
+      "sha256": "1a5c0636af7784e027e9fba937f2cadbf4415934a06d374105b1a3e019918585"
+    },
+    {
+      "path": "examples/benchmarks/compression/results/MipNeRF360.csv",
+      "sha256": "1cc2836658236d176f78b05132dc723cc03e463f1d64f780ed19511c260c0856"
+    },
+    {
+      "path": "examples/benchmarks/compression/results/TanksAndTemples.csv",
+      "sha256": "0521c2320dabc6c247dd3667318935bae0681ae16929e485feda8f552daa12b4"
+    },
+    {
+      "path": "examples/benchmarks/compression/summarize_stats.py",
+      "sha256": "1260b71999adf17735d3b64cba01d731b87529d839b94d04db872650b3b53b86"
+    },
+    {
+      "path": "examples/benchmarks/fisheye/mcmc_zipnerf.sh",
+      "sha256": "4ae2ffd6a22683b222aab14e477bae0d80e4bb9d51e0ed94b9cdfbd5fc9ef61b"
+    },
+    {
+      "path": "examples/benchmarks/fisheye/mcmc_zipnerf_undistorted.sh",
+      "sha256": "a0f376db3816e676b34db9b5fe924b504c41b6c4a4003e8962cc2cce2d59eb7a"
+    },
+    {
+      "path": "examples/benchmarks/mcmc.sh",
+      "sha256": "2e966f5be1ce428dfd6cf05e96176aca3b641e1f53a0cab435f58498301fa496"
+    },
+    {
+      "path": "examples/benchmarks/mcmc_4gpus.sh",
+      "sha256": "bef7f7c43bc7752c10951b56c64f257be81379522d994bdc667a1b158fc121f8"
+    },
+    {
+      "path": "examples/datasets/colmap.py",
+      "sha256": "2aa364ecfd2d7dd715ede5192fccd533982edf3be68b98008440a5aedf3b3fed"
+    },
+    {
+      "path": "examples/datasets/download_dataset.py",
+      "sha256": "b943be8ce5bde561665e0a578da915c75549fec268de9165806cce500f6d19a4"
+    },
+    {
+      "path": "examples/datasets/normalize.py",
+      "sha256": "019be99afb9cf947842b42c149fb5baecd840847795b0d63e6596d86aa7f79b3"
+    },
+    {
+      "path": "examples/datasets/traj.py",
+      "sha256": "69eb03c2b9d04c88bc2d4c4e0a5f398a51b8079889f3aea83775328f455ff936"
+    },
+    {
+      "path": "examples/gsplat_viewer.py",
+      "sha256": "c4037793460b1c0fd1f895eed80ba373492136b7c1845f8ddea5f3173838d71a"
+    },
+    {
+      "path": "examples/gsplat_viewer_2dgs.py",
+      "sha256": "370b70de83bbe60f8a8459f4796730a1acddb620cde2848e49266a1b576b5a5a"
+    },
+    {
+      "path": "examples/image_fitting.py",
+      "sha256": "dd4e1acbd7c12d82984adcabf452f0df8f7ab36a608c5201b058bab194e3225b"
+    },
+    {
+      "path": "examples/lib_bilagrid.py",
+      "sha256": "fefcebafdf7e8c533fe8c0c83c67a81b010ecc2e4b99677a49528307a306f4b2"
+    },
+    {
+      "path": "examples/requirements.txt",
+      "sha256": "c488a9146f7428560b24cfc7a01455808f356d4c8468641b23277c9236bbcc8a"
+    },
+    {
+      "path": "examples/simple_trainer.py",
+      "sha256": "79319e1cd7404e4d1ba0c425634235c39e6054f0643b904a01feea6179462c05"
+    },
+    {
+      "path": "examples/simple_trainer_2dgs.py",
+      "sha256": "fbb4bfc5ac251a74caae6fb850ff032de435880ebc6b55978b13f4ff32098ae6"
+    },
+    {
+      "path": "examples/simple_viewer.py",
+      "sha256": "b67987d4884ff3321327bdbe9d3e3dd75067224fdcb259984f5d1ca97a002fbb"
+    },
+    {
+      "path": "examples/simple_viewer_2dgs.py",
+      "sha256": "3947a21a7ee1343cdb676050e8989b3f480d2f17d44d22aeabecb34e91736b97"
+    },
+    {
+      "path": "examples/simple_viewer_3dgut.py",
+      "sha256": "a4809b1a432c123c4c2cdb7910fcd224c81a40cd9736e0482822fbca04fe8f5d"
+    },
+    {
+      "path": "examples/utils.py",
+      "sha256": "44a38b236940706705c9351b365be6bd21d49efc57dd695ba5a7e70055b959e1"
+    },
+    {
+      "path": "formatter.sh",
+      "sha256": "f5f8ebe388a878ebb2dac4d150357cfca9d054ee4599ac9c578606cf9ff54266"
+    },
+    {
+      "path": "gsplat/__init__.py",
+      "sha256": "29de62a4e2de6223f65743ad8f53cdcf75069f523de868c555978ad521193192"
+    },
+    {
+      "path": "gsplat/_helper.py",
+      "sha256": "0ad5bc3a0fec2ab3f98fcfe3e9a6e46c181f8c55d4541e9402c40bff62c8ac34"
+    },
+    {
+      "path": "gsplat/compression/__init__.py",
+      "sha256": "40aee8cdcdb12afda2860a412c939ae558ea4b0b22a4f790bd82cd2a53ccb5e2"
+    },
+    {
+      "path": "gsplat/compression/png_compression.py",
+      "sha256": "cdc1552349f147fcd905ab73f270363bfc2c423c054a89a2f2ff41651760d92c"
+    },
+    {
+      "path": "gsplat/compression/sort.py",
+      "sha256": "44347e61ad1f2e4c480f4c272145dfb21d330bf346a4cba6d357fe3989269bf2"
+    },
+    {
+      "path": "gsplat/cuda/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "gsplat/cuda/_backend.py",
+      "sha256": "03a6e16e27d956a64065f647b5ab755492a056e04d4062f65eecaca65ec98864"
+    },
+    {
+      "path": "gsplat/cuda/_torch_impl.py",
+      "sha256": "bb0a7d1a9bbabb9d6e610883cc1af63065898924df1d64d6cf72fcabd2f1cd19"
+    },
+    {
+      "path": "gsplat/cuda/_torch_impl_2dgs.py",
+      "sha256": "55e95b455541b3dfe76b9da56c96373ec69503671578ac657086a1e66d11a5cc"
+    },
+    {
+      "path": "gsplat/cuda/_wrapper.py",
+      "sha256": "b710953ca19e47ac93583e67cb44ea4bb92b97d06ba67ae5d950a71c878dc4e4"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Adam.cpp",
+      "sha256": "f2526179a8da522105475769f678b6ece6fb9f72820f6860ed1389d18f1a6f22"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Adam.h",
+      "sha256": "f539659e7c8f55cac944e190740b16e97561e407f672e9f3798a52a142e22949"
+    },
+    {
+      "path": "gsplat/cuda/csrc/AdamCUDA.cu",
+      "sha256": "6ca87ddad369e61dd1094759c8210d95580dde7ec98b77cda39c658e05e6414d"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Intersect.cpp",
+      "sha256": "6b487f343557a7302f007dbc6886aada275d4d9de559760f2734a79982c1cad5"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Intersect.h",
+      "sha256": "efcfa29d112b546929947d79383c311d68e69d3a937c434dc8a3222134097747"
+    },
+    {
+      "path": "gsplat/cuda/csrc/IntersectTile.cu",
+      "sha256": "ca321d5e1f2e7b48372bf428d1f2fe92a2115bccdb186b83c0725bc84095b015"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Null.cpp",
+      "sha256": "79a18e027251dae0de15ccc0a64b9d0f19658f268a624b32e80e3a4d1f9162b3"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Null.h",
+      "sha256": "c52f35c68088d30a1ba643eabedbfa87dfab4c88be9ea5b8f3a5bf6363a7430f"
+    },
+    {
+      "path": "gsplat/cuda/csrc/NullCUDA.cu",
+      "sha256": "f78c05e8623ecb8e2dff2094817641361de1f90adb117f7a6d4a96b0e0b57837"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Projection.cpp",
+      "sha256": "c0e4c27850f83d222733d619dd514387b9c4fed975e685a657a242a79ba5a416"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Projection.h",
+      "sha256": "ae6c03ecb57467cec066d07573522a5d1d670c5c17b84f0317c623ac08813b89"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Projection2DGS.cuh",
+      "sha256": "df1a58e56f8b2a6d93e5c11d3142ef22448f97f6071b904022b7d769c27844f2"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Projection2DGSFused.cu",
+      "sha256": "481ff05256a1b19c01da3f0e620fa2c7ecc28073e4de837249e54a27159d4c67"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Projection2DGSPacked.cu",
+      "sha256": "448b009e5614435313a35b95ebc30386fed0db313bcba49d9415031b129011d8"
+    },
+    {
+      "path": "gsplat/cuda/csrc/ProjectionEWA3DGSFused.cu",
+      "sha256": "b8537134770e4e098d6d8616164a20d3bfe34dbf0c4c1dffee42f35cc3c3710e"
+    },
+    {
+      "path": "gsplat/cuda/csrc/ProjectionEWA3DGSPacked.cu",
+      "sha256": "73ebbcc4be4bee817a9dede00aa9937415f241501559976934a02372fe6e57b2"
+    },
+    {
+      "path": "gsplat/cuda/csrc/ProjectionEWASimple.cu",
+      "sha256": "1358dc5aa480bea94275a972fc03f5360786bd6fca8aafcfdf69633011629f07"
+    },
+    {
+      "path": "gsplat/cuda/csrc/ProjectionUT3DGSFused.cu",
+      "sha256": "1e565082e7314a3bb25c780435cd61399c3c11ca805eb6ac7e25480be2055400"
+    },
+    {
+      "path": "gsplat/cuda/csrc/QuatScaleToCovar.cpp",
+      "sha256": "b73880ae2fa684d8afbbc1974a0d1a2b548ad9dab2b128a8188b4f1e0ca542c5"
+    },
+    {
+      "path": "gsplat/cuda/csrc/QuatScaleToCovar.h",
+      "sha256": "91a0ac5ef398331f91c9a0ee4eaf424ce2d3c0d1cce7fe9a8624a29fa2bcfe95"
+    },
+    {
+      "path": "gsplat/cuda/csrc/QuatScaleToCovarCUDA.cu",
+      "sha256": "ef18b847882d83e6b69800d8d047de63a1e34d322e3180b7f8f2164ddc6929a7"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Rasterization.cpp",
+      "sha256": "7dc120ef64ab78ac90702c6fc4af7c82dc9e09464c66e00dea1deabaf51c7ceb"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Rasterization.h",
+      "sha256": "f4af57565065f56a7479025796b4907b9c80c31b1e72467fae264db9a5d4c716"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToIndices2DGS.cu",
+      "sha256": "219b6bf663a867a65b35cb0e99e0081a5f596a8d9497cd855901247ff744879f"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToIndices3DGS.cu",
+      "sha256": "13910c63b730d0acd8303f600ef9c29ccbf90b9c04682312eec29db4c10b1d38"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToPixels2DGSBwd.cu",
+      "sha256": "a5b4b711f1461578261a0a9fa8c404c7a5089776fbd096a7e1c6db4ea917f8bb"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToPixels2DGSFwd.cu",
+      "sha256": "e8c7d1182a6ca33a4e7f55f1706158edfb16868e2d3b69ff32da3293b098f6dd"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToPixels3DGSBwd.cu",
+      "sha256": "2848738467309afa7d277c692ae1a53643f0658a23a06f066b8eaa9daf67c455"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToPixels3DGSFwd.cu",
+      "sha256": "9bebdfcb347798d49d329aa3d295431c53b41308b81dd5d8f64721b1426ec7de"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToPixelsFromWorld3DGSBwd.cu",
+      "sha256": "b9c87a90d9d1df3b71adbd0e3156e0377abc2cc28449cae3daee89f53b9c361a"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RasterizeToPixelsFromWorld3DGSFwd.cu",
+      "sha256": "d747fcd08d8d57d5a28dc7babe1ecf1d831791c816d394347a7e4680e50ae637"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Relocation.cpp",
+      "sha256": "0f6cff6bc503f0f6c9730ba87e585f2751538d46034e1e36b59e463a4ebeb096"
+    },
+    {
+      "path": "gsplat/cuda/csrc/Relocation.h",
+      "sha256": "02c2640677fdf06406091cc38b3bd67591c6a6cdd9f96915a2c97832e94a3da1"
+    },
+    {
+      "path": "gsplat/cuda/csrc/RelocationCUDA.cu",
+      "sha256": "dca4b1cef039e94eb2c902f20e645e777cca3f9be352da8bab9cffa4ac794051"
+    },
+    {
+      "path": "gsplat/cuda/csrc/SphericalHarmonics.cpp",
+      "sha256": "ad44d8af60edd17cdfb1f1485bd6f346f5faea7e41842ec9b840cf2092abb222"
+    },
+    {
+      "path": "gsplat/cuda/csrc/SphericalHarmonics.h",
+      "sha256": "449ca22bf97bf84814ed1695e4598570b7a29fbbbe31c77c7faa1fb92b5fcaec"
+    },
+    {
+      "path": "gsplat/cuda/csrc/SphericalHarmonicsCUDA.cu",
+      "sha256": "337de34d74fc382f9046e111c4ce10241dac73ef73d136224bb403ceea07a5c2"
+    },
+    {
+      "path": "gsplat/cuda/ext.cpp",
+      "sha256": "b8d8c42176bfeee346fca1ec69fd856ad3a35eb068b8126ce6729c485fa4cb4a"
+    },
+    {
+      "path": "gsplat/cuda/include/Cameras.cuh",
+      "sha256": "c60c065e3da7385a73ba9f049e9ff7902d0c39d7e86f8ec2a8e8b66000e14da2"
+    },
+    {
+      "path": "gsplat/cuda/include/Cameras.h",
+      "sha256": "091b9f506824d3b2a5102cca93589510a4f8154adc06245bc0afcaadd585b873"
+    },
+    {
+      "path": "gsplat/cuda/include/Common.h",
+      "sha256": "d865c47346ced0830186b37f8abc0800c056114a78dd3cb87e0b5ff5c3a7cc73"
+    },
+    {
+      "path": "gsplat/cuda/include/Ops.h",
+      "sha256": "88274adb1a97169ec3e987624fbf28853b0e060f360ee03b5f1c567a3efb0e68"
+    },
+    {
+      "path": "gsplat/cuda/include/Utils.cuh",
+      "sha256": "e1a62dbd73fccfc8349abb87d7cc8eb25a03e120ea8dc838d1c5d322361245cd"
+    },
+    {
+      "path": "gsplat/distributed.py",
+      "sha256": "fe3cfd7698da9e13de56a8d7dd1e38a3b8b20ca37ce044a349bdcec08a4f87a2"
+    },
+    {
+      "path": "gsplat/exporter.py",
+      "sha256": "f0154e4f2e0276921cfdd1c028c9e5557a2afbfe511a6f5d3f280f275948f5e1"
+    },
+    {
+      "path": "gsplat/optimizers/__init__.py",
+      "sha256": "26432001b4b047d2aff720bbaec4607e81bbfd3ba09db357f5abdac5a40ae5b1"
+    },
+    {
+      "path": "gsplat/optimizers/selective_adam.py",
+      "sha256": "ff2f8c05ba2b008c116d3df4f94f634e07f66e52e43741baac9ec15bd77316bf"
+    },
+    {
+      "path": "gsplat/profile.py",
+      "sha256": "587f3be9b09eb2f58887e19f50906a18991a8e6f67e75440bcfb200a90ed027f"
+    },
+    {
+      "path": "gsplat/relocation.py",
+      "sha256": "6843cb21b97844df891edfcba833d7fe97beccd88f365e3a68786d71f54c82ea"
+    },
+    {
+      "path": "gsplat/rendering.py",
+      "sha256": "6b5e4101035031afbb26bed7e496382c7502f9d8bc7cc9a432f290674a4d9133"
+    },
+    {
+      "path": "gsplat/strategy/__init__.py",
+      "sha256": "9c95da567cb34601963ce1230b7f60104924935068fb30641c417f7152fbeeb7"
+    },
+    {
+      "path": "gsplat/strategy/base.py",
+      "sha256": "f0e92bab7d567c671992b795337bbab36d4aabf32d618bd71fc9e1c63647c3c0"
+    },
+    {
+      "path": "gsplat/strategy/default.py",
+      "sha256": "8f9cf7d5cb02999cdb3abfb85d796e6989d5249c25ed7b08ee58538a4288a622"
+    },
+    {
+      "path": "gsplat/strategy/mcmc.py",
+      "sha256": "0c2fc042833f39fae0b785de07d0472fe0d1f22437108b0d04a45c0e4fe67c16"
+    },
+    {
+      "path": "gsplat/strategy/ops.py",
+      "sha256": "b30fa9e4d60a97ec619eb54d43d158d3e9dc8102c3d971acbb46da8385b53074"
+    },
+    {
+      "path": "gsplat/utils.py",
+      "sha256": "3b0bc186304a97c2f6daaadf82a43812b02a2a6b2d687dd742fbc5df4d05263f"
+    },
+    {
+      "path": "gsplat/version.py",
+      "sha256": "669ecc44e76cbe92d0e66ac66fc4b0d5e2265ac2ff80ee40f405f6fe2f56a391"
+    },
+    {
+      "path": "profiling/batch.py",
+      "sha256": "527fc8cf279182930b95db27f2657ab5b1dec76e30badff6d62c9a4529d8c7d9"
+    },
+    {
+      "path": "profiling/main.py",
+      "sha256": "9ab61a6b6afaa09111a832d0299635a19c1dd2ff55bede11648f7d59dbd726d7"
+    },
+    {
+      "path": "setup.py",
+      "sha256": "429333687ba8f9d1b606b484ecee15fe17dd0187c370a6ae48ba1bd100bbd3cc"
+    },
+    {
+      "path": "tests/_test_distributed.py",
+      "sha256": "31dfc6cd830a3c61edb758464b148152f9cf7c6b62cfb6ef09cc02763da252e9"
+    },
+    {
+      "path": "tests/test_2dgs.py",
+      "sha256": "fb0183529fce832f2f2ce64ad160c275a18479d9bda718c41ef8179f3e4b13f5"
+    },
+    {
+      "path": "tests/test_basic.py",
+      "sha256": "d90d707b90762fa9bc8a60c88bd032ef23afdbbee0892eaa9a4125a9d4d5555d"
+    },
+    {
+      "path": "tests/test_compression.py",
+      "sha256": "38ce2c1cfe1b613f355024f8ff50e857c85b625b43ed4ae54107c7d8be55c276"
+    },
+    {
+      "path": "tests/test_ftheta.py",
+      "sha256": "341a4e3db666aeb76b4d8d71fb4f75b758bff5b1f2eaa581face9a24f3d35d36"
+    },
+    {
+      "path": "tests/test_rasterization.py",
+      "sha256": "8aec02184373bea39d651f0c27e23e87e667651509d357d1ed9346ec3caf8a52"
+    },
+    {
+      "path": "tests/test_strategy.py",
+      "sha256": "c7c69f174374b11979b3f15df67b599c97d71db1b0746b6442780e94dca8c3bd"
+    }
+  ],
+  "submodule_note": "The archived and installed source have an empty GLM submodule directory. A source rebuild must initialize the commit-pinned GLM submodule. No compiled-extension parity is claimed."
+}
