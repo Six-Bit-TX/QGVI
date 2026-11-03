@@ -4,7 +4,7 @@
   "huggingface": {
     "repo_id": "TimSYQQX/QGVI-checkpoints",
     "repo_type": "model",
-    "revision": "7e32c4917efde570e04ddc1318c7b02a94e03671",
+    "revision": "f82d1fd1b5d64856c50ad99fed8d2e64ec1d5a30",
     "private": true,
     "available_scenes": [
       "sf",
@@ -12,7 +12,8 @@
       "colosseum",
       "elvenruin",
       "citysample",
-      "block_small"
+      "block_small",
+      "road"
     ]
   },
   "status": "partial_private_remote_verified",
