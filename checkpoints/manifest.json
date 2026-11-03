@@ -4,7 +4,7 @@
   "huggingface": {
     "repo_id": "TimSYQQX/QGVI-checkpoints",
     "repo_type": "model",
-    "revision": "51c79b0be645d6cfafe1e471e583c05df93bee38",
+    "revision": "965afdc35dbf1f0972162ea5348c29a45010b231",
     "private": true,
     "available_scenes": [
       "sf",
@@ -14,10 +14,11 @@
       "citysample",
       "block_small",
       "road",
-      "park"
+      "park",
+      "block_a"
     ]
   },
-  "status": "partial_private_remote_verified",
+  "status": "all_scenes_private_remote_verified",
   "checkpoint_bytes_modified": false,
   "coordinate_system": "native model units; OpenCV camera-to-world",
   "scenes": {
