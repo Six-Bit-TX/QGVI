@@ -41,5 +41,17 @@
     "gsplat_source_files_verified": 154,
     "cpu_tensor_tests_passed": 29,
     "gpu_render_tested": false
+  },
+  "clean_checkout": {
+    "source": "https://github.com/Six-Bit-TX/QGVI",
+    "one_command_run_demo": "passed",
+    "public_image_http_checks": "passed",
+    "live_text_api": "passed",
+    "original_source_integrity": "passed",
+    "fresh_pnp_example": "passed"
+  },
+  "github_actions": {
+    "status": "success",
+    "url": "https://github.com/Six-Bit-TX/QGVI/actions/runs/41568521603"
   }
 }
